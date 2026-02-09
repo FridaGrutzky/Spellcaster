@@ -1,39 +1,58 @@
 using UnityEngine;
-using UnityEngine.XR;
+using UnityEngine.InputSystem;
 
 public class WandCaster : MonoBehaviour
 {
-    public Transform castPoint;
+    [Header("Magic Settings")]
+    public GameObject spellPrefab;
+    public Transform muzzlePoint;
+    public float spellPower = 15f;
 
-    InputDevice device;
+    [Header("Debug Auto-Cast")]
+    public bool useAutoCast = true; // Check this box to shoot automatically
+    public float shootInterval = 2.0f; // Seconds between shots
+    private float timer;
 
-    void Start()
-    {
-        device = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-    }
-
-    bool wasPressed = false;
+    [Header("Input (Optional for now)")]
+    public InputActionReference castAction;
 
     void Update()
     {
-        if (device.TryGetFeatureValue(CommonUsages.triggerButton, out bool pressed))
+        // Path A: Auto-shooting for testing
+        if (useAutoCast)
         {
-            if (pressed && !wasPressed)
+            timer += Time.deltaTime;
+            if (timer >= shootInterval)
+            {
+                CastSpell();
+                timer = 0;
+            }
+        }
+
+        // Path B: Manual shooting (for when you have the goggles)
+        // We check if castAction is assigned to avoid errors
+        if (castAction != null && castAction.action != null)
+        {
+            if (castAction.action.WasPressedThisFrame())
             {
                 CastSpell();
             }
-            wasPressed = pressed;
         }
     }
 
     void CastSpell()
     {
-        if (SpellManager.Instance.currentSpell == null) return;
+        if (spellPrefab == null || muzzlePoint == null) return;
 
-        Instantiate(
-            SpellManager.Instance.currentSpell.spellPrefab,
-            castPoint.position,
-            castPoint.rotation
-        );
+        GameObject spell = Instantiate(spellPrefab, muzzlePoint.position, muzzlePoint.rotation);
+        Rigidbody rb = spell.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            // This shoots it in the direction the Muzzle is pointing
+            rb.linearVelocity = muzzlePoint.forward * spellPower;
+        }
+
+        Destroy(spell, 5f);
     }
 }
