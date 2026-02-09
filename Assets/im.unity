@@ -164,10 +164,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e449c6b67402247b2222dd1f8f0415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellPrefab: {fileID: 0}
-  muzzlePoint: {fileID: 0}
+  spellPrefab: {fileID: 8464770310638742296, guid: 6814207592d8a02469d2797902dd37b6, type: 3}
+  muzzlePoint: {fileID: 755566746}
   spellPower: 15
-  castAction: {fileID: 0}
+  useAutoCast: 1
+  shootInterval: 2
+  castAction: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &428081992
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,13 +240,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 755566745}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.36, y: 9.23, z: 0}
+  m_LocalRotation: {x: -0.17871763, y: 0.7529993, z: 0.22773622, w: 0.59092164}
+  m_LocalPosition: {x: 4.3600006, y: 9.340003, z: -0.06000061}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 986091635}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -33.655, y: 103.753, z: 0}
 --- !u!1 &903674054
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,6 +779,8 @@ GameObject:
   - component: {fileID: 2125247648}
   - component: {fileID: 2125247647}
   - component: {fileID: 2125247646}
+  - component: {fileID: 2125247649}
+  - component: {fileID: 2125247650}
   m_Layer: 0
   m_Name: XR Origin (Eyes n Controllers)
   m_TagString: Untagged
@@ -830,6 +834,41 @@ Transform:
   - {fileID: 1558422336}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2125247649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125247645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dea56a9eaadd1c439095de4f9a371cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <trackablesChanged>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SerializedLibrary: {fileID: 11400000, guid: 8e31611120e4f97418ca39294151aaec, type: 2}
+  m_MaxNumberOfMovingImages: 1
+  m_TrackedImagePrefab: {fileID: 0}
+--- !u!114 &2125247650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125247645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7f4260e9499a24ab42b40f55e0f1d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  qrName: WandQR
+  muzzleTransform: {fileID: 755566746}
+  spellPrefab: {fileID: 8464770310638742296, guid: 6814207592d8a02469d2797902dd37b6, type: 3}
+  spellSpeed: 15
+  castAction: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
