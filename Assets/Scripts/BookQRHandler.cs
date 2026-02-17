@@ -1,60 +1,58 @@
 using UnityEngine;
 using Meta.XR.MRUtilityKit;
-using TMPro; // Needed for TextMeshPro
+using TMPro;
 
-public class BookQRHandler : MonoBehaviour
+public class QRBookManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _headsetUI;
-    [SerializeField] private TextMeshProUGUI _pageText; // Drag your UI's text component here
+    [SerializeField] private GameObject _bookUI;
+    [SerializeField] private TextMeshProUGUI _pageText;
 
-    private int _visibleQRCount = 0;
+    // We'll keep a reference to the current code we are reading
+    private string _currentPayload = "";
 
+    // 1. Hook to "On Trackable Added"
     public void OnTrackableAdded(MRUKTrackable trackable)
     {
-        if (trackable.TrackableType != OVRAnchor.TrackableType.QRCode) return;
+        // Debug line: This will show up in your Unity Console (or headset logs)
+        Debug.Log(">>> SCANNER DETECTED: " + trackable.MarkerPayloadString);
 
-        string qrValue = trackable.MarkerPayloadString;
-        if (string.IsNullOrEmpty(qrValue)) return;
-
-        // The Switch Statement: Check which page we just 'opened'
-        switch (qrValue)
+        if (trackable.TrackableType == OVRAnchor.TrackableType.QRCode)
         {
-            case "FIRESPELL":
-                _pageText.text = "mlem";
-                ShowUI();
-                break;
-
-            case "LIGHTSPELL":
-                _pageText.text = "dog";
-                ShowUI();
-                break;
-
-            case "WINDSPELL":
-                _pageText.text = "yippie";
-                ShowUI();
-                break;
-
-            default:
-                Debug.Log($"Scanned unknown QR: {qrValue}");
-                break;
+            _currentPayload = trackable.MarkerPayloadString;
+            _bookUI.SetActive(true);
+            UpdateSpellText(_currentPayload);
         }
     }
 
-    private void ShowUI()
-    {
-        _visibleQRCount++;
-        if (_headsetUI != null) _headsetUI.SetActive(true);
-    }
-
+    // 2. Hook to "On Trackable Removed"
     public void OnTrackableRemoved(MRUKTrackable trackable)
     {
-        if (trackable.TrackableType != OVRAnchor.TrackableType.QRCode) return;
-
-        _visibleQRCount--;
-
-        if (_visibleQRCount <= 0 && _headsetUI != null)
+        // Only hide if the code being removed is the one we are currently looking at
+        if (trackable.MarkerPayloadString == _currentPayload)
         {
-            _headsetUI.SetActive(false);
+            Debug.Log(">>> SCANNER LOST: " + _currentPayload);
+            _bookUI.SetActive(false);
+            _currentPayload = "";
+        }
+    }
+
+    private void UpdateSpellText(string payload)
+    {
+        // Using ToUpper() ensures that "firespell" and "FIRESPELL" both work
+        switch (payload.ToUpper().Trim())
+        {
+            case "FIRESPELL":
+                _pageText.text = "<color=red>FIRE SPELL</color>\n\nSummoning a wall of flame...";
+                break;
+            case "LIGHTSPELL":
+                _pageText.text = "<color=yellow>LIGHT SPELL</color>\n\nA holy radiance appears.";
+                break;
+            case "WINDSPELL":
+                _pageText.text = "<color=cyan>WIND SPELL</color>\n\nThe storm obeys your command.";
+                break;
+            default:
+                _pageText.text = "Reading scroll...\nDetected: " + payload;
+                break;
         }
     }
 }
