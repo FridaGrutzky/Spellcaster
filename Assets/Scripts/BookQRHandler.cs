@@ -1,47 +1,60 @@
 using UnityEngine;
 using Meta.XR.MRUtilityKit;
+using TMPro; // Needed for TextMeshPro
 
 public class BookQRHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject _bookPrefab;
-    private GameObject _activeBookUI;
-    private MRUKTrackable _currentTrackable;
+    [SerializeField] private GameObject _headsetUI;
+    [SerializeField] private TextMeshProUGUI _pageText; // Drag your UI's text component here
+
+    private int _visibleQRCount = 0;
 
     public void OnTrackableAdded(MRUKTrackable trackable)
     {
-        // Safety check: Ensure the anchor data exists
-        if (trackable.Anchor == null) return;
+        if (trackable.TrackableType != OVRAnchor.TrackableType.QRCode) return;
 
-        // In Unity 6 / MRUK, Labels are now a list or bitmask inside the Anchor
-        // We use HasLabel to check for the internal "MARKER" string
-        if (!trackable.HasLabel("MARKER"))
+        string qrValue = trackable.MarkerPayloadString;
+        if (string.IsNullOrEmpty(qrValue)) return;
+
+        // The Switch Statement: Check which page we just 'opened'
+        switch (qrValue)
         {
-            return;
+            case "FIRESPELL":
+                _pageText.text = "mlem";
+                ShowUI();
+                break;
+
+            case "LIGHTSPELL":
+                _pageText.text = "dog";
+                ShowUI();
+                break;
+
+            case "WINDSPELL":
+                _pageText.text = "yippie";
+                ShowUI();
+                break;
+
+            default:
+                Debug.Log($"Scanned unknown QR: {qrValue}");
+                break;
         }
+    }
 
-        Debug.Log("Success! QR Trackable detected.");
-
-        // Singleton UI logic
-        if (_activeBookUI == null)
-        {
-            _activeBookUI = Instantiate(_bookPrefab);
-        }
-
-        // Attach UI to the QR
-        _activeBookUI.transform.SetParent(trackable.transform, false);
-        _activeBookUI.transform.localPosition = Vector3.zero;
-        _activeBookUI.transform.localRotation = Quaternion.identity;
-
-        _activeBookUI.SetActive(true);
-        _currentTrackable = trackable;
+    private void ShowUI()
+    {
+        _visibleQRCount++;
+        if (_headsetUI != null) _headsetUI.SetActive(true);
     }
 
     public void OnTrackableRemoved(MRUKTrackable trackable)
     {
-        if (_currentTrackable == trackable)
+        if (trackable.TrackableType != OVRAnchor.TrackableType.QRCode) return;
+
+        _visibleQRCount--;
+
+        if (_visibleQRCount <= 0 && _headsetUI != null)
         {
-            if (_activeBookUI != null) _activeBookUI.SetActive(false);
-            _currentTrackable = null;
+            _headsetUI.SetActive(false);
         }
     }
 }
