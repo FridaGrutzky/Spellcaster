@@ -1,0 +1,197 @@
+﻿# Spell Tracing Mini-Game — Implementation Plan
+**Project:** 3D World-Space UI with traceable spell shapes
+**Shapes:** Lightning Bolt, Wind Swirl, Fire Flame
+**Style:** Billboard sprite (Y-axis rotation) in 3D world space
+
+---
+
+## Overview
+Three interactable spell tablets exist as objects in the 3D world. Each billboards
+toward the player (Y-axis only), contains a traceable shape, and a text label.
+Tracing the shape fully triggers a spell event.
+
+---
+
+## Phase 1 — Art Assets (Illustrator / Photoshop / Paint.net)
+
+### 1.1 — Shape Silhouette Textures
+Three PNGs, transparent background, white filled shape, 512x512px:
+- lightning_shape.png
+- swirl_shape.png
+- flame_shape.png
+
+### 1.2 — Fill Map Textures
+Greyscale, same silhouette, gradient encodes trace order:
+- Black = trace start (base / tail)
+- White = trace end (tip / top)
+- Gradient flows along the logical drawing path
+
+Output: lightning_fillmap.png / swirl_fillmap.png / flame_fillmap.png
+
+Note: Artistically rough is fine. The gradient just needs to flow in the
+direction a player would naturally draw the shape.
+
+### 1.3 — (Optional) Tablet Background Texture
+Panel/card behind shape and text. Can be skipped and done in-engine with
+a solid-color Quad material.
+
+---
+
+## Phase 2 — Unity Project Setup
+
+### 2.1 — Project Settings
+- 3D project, URP recommended
+- Import Phase 1 textures
+- Fill maps: Texture Type = Default, sRGB OFF, no compression
+
+### 2.2 — Folder Structure
+Assets/SpellTracing/Textures / Shaders / Materials / Scripts /
+                   ScriptableObjects / Prefabs
+
+### 2.3 — PathData ScriptableObject (define here, implement in 5.1)
+Fields:
+- List<Vector2> waypoints (local UV space, 0,0 = bottom-left, 1,1 = top-right)
+- float traceTolerance
+- float messUpThreshold
+- string spellName
+- Texture2D shapeTexture
+- Texture2D fillMapTexture
+
+---
+
+## Phase 3 — Shader
+
+### 3.1 — PathShader.shader
+Unlit. Inputs:
+- _MainTex       shape silhouette (drives alpha clip)
+- _FillMap       greyscale fill order
+- _FillAmount    float 0–1, set by script
+- _FillColor     filled region color
+- _BaseColor     unfilled region color
+
+Fragment logic:
+  float f = tex2D(_FillMap, uv).r;
+  clip(tex2D(_MainTex, uv).a - 0.1);        // shape mask
+  color = f > (1 - _FillAmount) ? _FillColor : _BaseColor;
+
+### 3.2 — Three Materials
+One per spell. Thematic colors:
+- Lightning: _BaseColor dark grey, _FillColor bright yellow
+- Swirl:     _BaseColor grey,      _FillColor cyan
+- Flame:     _BaseColor dark red,  _FillColor orange
+
+---
+
+## Phase 4 — World Space Tablet Hierarchy
+
+### 4.1 — Tablet Structure (replicate x3)
+SpellTablet_[Name]      Empty GO — BillboardY.cs
+  > ShapeQuad           Quad + MeshRenderer (spell material) — PathVisual.cs
+  > InputQuad           Quad + MeshCollider (invisible) — PathTracer.cs
+  > LabelObject         TextMeshPro 3D, positioned below shape
+
+### 4.2 — BillboardY.cs
+LateUpdate: read Camera.main.transform.position, compute Y-only look rotation,
+apply to SpellTablet root transform.
+
+### 4.3 — Replicate and Assign
+Three tablets in scene. Each gets its own Material and PathData asset.
+
+---
+
+## Phase 5 — Core Scripts
+
+### 5.1 — PathData.cs
+ScriptableObject. Implement fields from 2.3.
+Create three .asset instances in ScriptableObjects/.
+
+### 5.2 — PathTracer.cs (on InputQuad)
+- Raycast camera → InputQuad collider on mouse held / touch
+- Convert world hit point to Quad local UV space
+- Project UV onto PathData waypoints → get (progress 0–1, distFromPath)
+- Three zones:
+    dist <= traceTolerance       → advance highWaterMark if progress > current
+    dist <= messUpThreshold      → pause, no progress change
+    dist >  messUpThreshold      → fire OnMessUp
+- highWaterMark never decreases
+- Events: OnProgressUpdated(float), OnCompleted, OnMessUp
+- Ref to PathVisual sibling
+
+### 5.3 — PathVisual.cs (on ShapeQuad)
+- Sub to PathTracer.OnProgressUpdated → material.SetFloat("_FillAmount", v)
+- Sub to OnCompleted → pulse coroutine (brighten _FillColor briefly)
+- Sub to OnMessUp → red flash coroutine (lerp _FillColor to red then back)
+
+### 5.4 — GameManager.cs (scene singleton)
+- Refs to all three PathTracers
+- Sub to all three OnCompleted
+- Track bool[] spellsDone
+- All three done → invoke game win event
+- OnMessUp → optional partial rollback, cooldown timer
+
+---
+
+## Phase 6 — Waypoint Placement Per Shape
+
+### 6.1 — Lightning Bolt
+Path: bottom-left → zigzag up-right → top
+~8–12 waypoints along bolt centerline.
+
+### 6.2 — Wind Swirl
+Path: outer edge → spiral clockwise inward to center
+~20–30 waypoints, tight spacing on inner coils.
+
+### 6.3 — Flame
+Path: base center → up through left lobe → back down → up through right lobe → peak
+~12–18 waypoints.
+
+Tip: In PathTracer.OnDrawGizmos draw each waypoint as a Sphere and
+connect them with Gizmos.DrawLine. Essential for tuning.
+
+---
+
+## Phase 7 — Polish
+
+### 7.1 — Trace Feedback
+- Cursor highlight while InputQuad is hit
+- ShapeQuad color shifts as fill increases
+- ParticleSystem child fires on OnCompleted
+
+### 7.2 — Mess-Up Feedback
+- Red flash on ShapeQuad
+- Optional camera shake
+- Optional highWaterMark -= 0.05f (clamped to 0)
+
+### 7.3 — Label
+- TMP spell name always visible
+- Optional live "72%" progress display while tracing
+
+### 7.4 — Audio
+- Looping trace sound while cursor is on path
+- Unique completion sting per spell (crack / whoosh / roar)
+- Error sound on mess-up
+
+---
+
+## Dependency Order
+
+1 (Art) ──► 3 (Shader needs textures)
+2 (Setup) runs parallel to 1
+3 (Shader) ──► 4 (Hierarchy needs materials)
+4 (Hierarchy) ──► 5 (Scripts need GameObjects)
+5 (Scripts) ──► 6 (Waypoints need Gizmos to tune)
+6 (Tuned) ──► 7 (Polish)
+
+---
+
+## Resuming in a New Chat — Entry Points
+
+"I am on step 3.1 — write PathShader.shader for Unity URP"
+"I am on step 4.2 — write BillboardY.cs for Y-axis world-space billboard"
+"I am on step 5.2 — write PathTracer.cs. Here is PathData.cs: [paste]"
+"I am on step 6.2 — define swirl waypoints, quad is 1x1 Unity units"
+
+Always paste existing scripts when resuming.
+
+---
+SpellTracingPlan.md — v1.0
