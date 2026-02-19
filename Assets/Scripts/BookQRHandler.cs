@@ -7,38 +7,24 @@ public class QRBookManager : MonoBehaviour
     [SerializeField] private GameObject _bookUI;
     [SerializeField] private TextMeshProUGUI _pageText;
 
-    // We'll keep a reference to the current code we are reading
-    private string _currentPayload = "";
-
-    // 1. Hook to "On Trackable Added"
+    // Triggered by MRUK Event Utilities
     public void OnTrackableAdded(MRUKTrackable trackable)
     {
-        // Debug line: This will show up in your Unity Console (or headset logs)
-        Debug.Log(">>> SCANNER DETECTED: " + trackable.MarkerPayloadString);
-
         if (trackable.TrackableType == OVRAnchor.TrackableType.QRCode)
         {
-            _currentPayload = trackable.MarkerPayloadString;
             _bookUI.SetActive(true);
-            UpdateSpellText(_currentPayload);
+            UpdateSpellText(trackable.MarkerPayloadString);
         }
     }
 
-    // 2. Hook to "On Trackable Removed"
-    public void OnTrackableRemoved(MRUKTrackable trackable)
+    // Triggered by your UI Button (On Click)
+    public void CloseUI()
     {
-        // Only hide if the code being removed is the one we are currently looking at
-        if (trackable.MarkerPayloadString == _currentPayload)
-        {
-            Debug.Log(">>> SCANNER LOST: " + _currentPayload);
-            _bookUI.SetActive(false);
-            _currentPayload = "";
-        }
+        _bookUI.SetActive(false);
     }
 
     private void UpdateSpellText(string payload)
     {
-        // Using ToUpper() ensures that "firespell" and "FIRESPELL" both work
         switch (payload.ToUpper().Trim())
         {
             case "FIRESPELL":
@@ -46,9 +32,6 @@ public class QRBookManager : MonoBehaviour
                 break;
             case "LIGHTSPELL":
                 _pageText.text = "<color=yellow>LIGHT SPELL</color>\n\nA holy radiance appears.";
-                break;
-            case "WINDSPELL":
-                _pageText.text = "<color=cyan>WIND SPELL</color>\n\nThe storm obeys your command.";
                 break;
             default:
                 _pageText.text = "Reading scroll...\nDetected: " + payload;
