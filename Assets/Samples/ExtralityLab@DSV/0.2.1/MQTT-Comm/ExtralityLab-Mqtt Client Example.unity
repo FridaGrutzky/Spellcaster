@@ -1278,7 +1278,7 @@ MonoBehaviour:
   isEncrypted: 0
   connectionDelay: 500
   timeoutOnConnection: 30000
-  autoConnect: 1
+  autoConnect: 0
   mqttUserName: unity
   mqttPassword: extrality
   publishTopicName: myUnityApp/analogRGB
@@ -2185,7 +2185,7 @@ MonoBehaviour:
   isEncrypted: 0
   connectionDelay: 500
   timeoutOnConnection: 30000
-  autoConnect: 1
+  autoConnect: 0
   mqttUserName: unity
   mqttPassword: extrality
   subscribedTopic: myUnityApp/analogRGB
@@ -2271,28 +2271,17 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
-    type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018,
-    type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018,
-    type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018,
-    type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018,
-    type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018,
-    type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018,
-    type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018,
-    type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018,
-    type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018,
-    type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018,
-    type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
@@ -2647,7 +2636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929097cc73ad448c9b244c29d1cdec93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokerAddress: inf-liva-server-eth.dsv.local.su.se
+  brokerAddress: broker.hivemq.com
   brokerPort: 1883
   isEncrypted: 0
   connectionDelay: 500
@@ -2655,7 +2644,7 @@ MonoBehaviour:
   autoConnect: 1
   mqttUserName: unity
   mqttPassword: extrality
-  subscribedTopic: myUnityApp/digital
+  subscribedTopic: linus/arduino
   autoSubscribe: 0
   virtualLightRGB: {fileID: 133431590}
   currentState: 0
@@ -5154,7 +5143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782227dec2fc4f22b184d846f1c3a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokerAddress: inf-liva-server-eth.dsv.local.su.se
+  brokerAddress: broker.hivemq.com
   brokerPort: 1883
   isEncrypted: 0
   connectionDelay: 500
@@ -5162,8 +5151,8 @@ MonoBehaviour:
   autoConnect: 1
   mqttUserName: unity
   mqttPassword: extrality
-  publishTopicName: myUnityApp/digital
-  subscribedTopic: myUnityApp/message
+  publishTopicName: linus/arduino
+  subscribedTopic: linus/arduino
 --- !u!1 &1971232768
 GameObject:
   m_ObjectHideFlags: 0
