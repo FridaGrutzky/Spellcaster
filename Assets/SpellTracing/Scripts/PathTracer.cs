@@ -40,18 +40,39 @@ public class PathTracer : MonoBehaviour
     void Update()
     {
         if (_completed) return;
-        if (pathData == null || pathData.waypoints == null || pathData.waypoints.Count < 2) return;
-        if (SpellInputProvider.Instance == null) return;
+
+        if (pathData == null || pathData.waypoints == null || pathData.waypoints.Count < 2)
+        {
+            Debug.LogWarning($"[PathTracer] {gameObject.name}: pathData missing or has fewer than 2 waypoints.");
+            return;
+        }
+
+        if (SpellInputProvider.Instance == null)
+        {
+            Debug.LogWarning("[PathTracer] SpellInputProvider.Instance is null — is it in the scene?");
+            return;
+        }
 
         // Only trace while pointer button / trigger is held
         if (!SpellInputProvider.Instance.IsPointerHeld()) return;
 
         // Cast ray from active input source
         Ray ray = SpellInputProvider.Instance.GetPointerRay();
-        if (!Physics.Raycast(ray, out RaycastHit hit)) return;
+
+        if (!Physics.Raycast(ray, out RaycastHit hit))
+        {
+            Debug.Log("[PathTracer] Raycast hit nothing.");
+            return;
+        }
+
+        Debug.Log($"[PathTracer] Raycast hit: {hit.collider.gameObject.name}");
 
         // Make sure we hit THIS quad, not another collider
-        if (hit.collider != _col) return;
+        if (hit.collider != _col)
+        {
+            Debug.Log($"[PathTracer] Hit wrong collider: {hit.collider.gameObject.name}, expected: {gameObject.name}");
+            return;
+        }
 
         // Convert world hit point → local UV (0,0 bottom-left, 1,1 top-right)
         Vector2 uv = WorldToUV(hit.point);

@@ -15,6 +15,16 @@ MonoBehaviour:
   spellName: Lightning
   shapeTexture: {fileID: 2800000, guid: 6b9dd40ce3d437d438b1f31cb9726052, type: 3}
   fillMapTexture: {fileID: 2800000, guid: 3bf77bbeabb9edb4da7fbf2db4cdf5b5, type: 3}
-  waypoints: []
+  waypoints:
+  - {x: 0.48, y: 0.14}
+  - {x: 0.54, y: 0.23}
+  - {x: 0.6, y: 0.35}
+  - {x: 0.66, y: 0.5}
+  - {x: 0.51, y: 0.5}
+  - {x: 0.33, y: 0.5}
+  - {x: 0.36, y: 0.59}
+  - {x: 0.42, y: 0.68}
+  - {x: 0.45, y: 0.77}
+  - {x: 0.51, y: 0.86}
   traceTolerance: 0.08
   messUpThreshold: 0.2
