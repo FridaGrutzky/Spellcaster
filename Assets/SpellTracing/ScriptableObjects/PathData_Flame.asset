@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: f13f9bdcccc673a419ab42e4a1f04c96, type: 3}
   m_Name: PathData_Flame
-  m_EditorClassIdentifier: Assembly-CSharp::PathData
-  spellName: Unnamed Spell
-  shapeTexture: {fileID: 0}
-  fillMapTexture: {fileID: 0}
+  m_EditorClassIdentifier: 
+  spellName: Flame
+  shapeTexture: {fileID: 2800000, guid: f12ea4beb58186044a795edeac20bd34, type: 3}
+  fillMapTexture: {fileID: 2800000, guid: 9543a6053416d02408c47f9ddc6c7e10, type: 3}
   waypoints: []
   traceTolerance: 0.08
   messUpThreshold: 0.2
