@@ -1,47 +1,58 @@
 using UnityEngine;
 using Meta.XR.MRUtilityKit;
+using TMPro;
 
-public class BookQRHandler : MonoBehaviour
+public class QRBookManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _bookPrefab;
-    private GameObject _activeBookUI;
-    private MRUKTrackable _currentTrackable;
+    [SerializeField] private GameObject _bookUI;
+    [SerializeField] private TextMeshProUGUI _pageText;
 
+    // We'll keep a reference to the current code we are reading
+    private string _currentPayload = "";
+
+    // 1. Hook to "On Trackable Added"
     public void OnTrackableAdded(MRUKTrackable trackable)
     {
-        // Safety check: Ensure the anchor data exists
-        if (trackable.Anchor == null) return;
+        // Debug line: This will show up in your Unity Console (or headset logs)
+        Debug.Log(">>> SCANNER DETECTED: " + trackable.MarkerPayloadString);
 
-        // In Unity 6 / MRUK, Labels are now a list or bitmask inside the Anchor
-        // We use HasLabel to check for the internal "MARKER" string
-        if (!trackable.HasLabel("MARKER"))
+        if (trackable.TrackableType == OVRAnchor.TrackableType.QRCode)
         {
-            return;
+            _currentPayload = trackable.MarkerPayloadString;
+            _bookUI.SetActive(true);
+            UpdateSpellText(_currentPayload);
         }
-
-        Debug.Log("Success! QR Trackable detected.");
-
-        // Singleton UI logic
-        if (_activeBookUI == null)
-        {
-            _activeBookUI = Instantiate(_bookPrefab);
-        }
-
-        // Attach UI to the QR
-        _activeBookUI.transform.SetParent(trackable.transform, false);
-        _activeBookUI.transform.localPosition = Vector3.zero;
-        _activeBookUI.transform.localRotation = Quaternion.identity;
-
-        _activeBookUI.SetActive(true);
-        _currentTrackable = trackable;
     }
 
+    // 2. Hook to "On Trackable Removed"
     public void OnTrackableRemoved(MRUKTrackable trackable)
     {
-        if (_currentTrackable == trackable)
+        // Only hide if the code being removed is the one we are currently looking at
+        if (trackable.MarkerPayloadString == _currentPayload)
         {
-            if (_activeBookUI != null) _activeBookUI.SetActive(false);
-            _currentTrackable = null;
+            Debug.Log(">>> SCANNER LOST: " + _currentPayload);
+            _bookUI.SetActive(false);
+            _currentPayload = "";
+        }
+    }
+
+    private void UpdateSpellText(string payload)
+    {
+        // Using ToUpper() ensures that "firespell" and "FIRESPELL" both work
+        switch (payload.ToUpper().Trim())
+        {
+            case "FIRESPELL":
+                _pageText.text = "<color=red>FIRE SPELL</color>\n\nSummoning a wall of flame...";
+                break;
+            case "LIGHTSPELL":
+                _pageText.text = "<color=yellow>LIGHT SPELL</color>\n\nA holy radiance appears.";
+                break;
+            case "WINDSPELL":
+                _pageText.text = "<color=cyan>WIND SPELL</color>\n\nThe storm obeys your command.";
+                break;
+            default:
+                _pageText.text = "Reading scroll...\nDetected: " + payload;
+                break;
         }
     }
 }
