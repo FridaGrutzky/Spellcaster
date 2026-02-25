@@ -559,9 +559,9 @@ MonoBehaviour:
   trackedObjectPrefab: {fileID: 3556983585031118479, guid: a85c222ca402a7f4ab016f08fb22e105, type: 3}
   trackedObjectInfoPrefab: {fileID: 1519958079446967273, guid: 8752da5b5fe829e428fb1f5ba1f259eb, type: 3}
   trackedBoundsPrefab: {fileID: 6108994398961204252, guid: 6d6726b9f04b52c4ea4cd58fe945971e, type: 3}
-  fireSpellPanel: {fileID: 0}
-  lightSpellPanel: {fileID: 0}
-  windSpellPanel: {fileID: 0}
+  fireSpellPrefab: {fileID: 0}
+  lightSpellPrefab: {fileID: 0}
+  windSpellPrefab: {fileID: 0}
 --- !u!1 &788478334
 GameObject:
   m_ObjectHideFlags: 0

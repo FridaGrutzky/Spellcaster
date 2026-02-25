@@ -5,14 +5,13 @@ using TMPro;
 public class TrackablesManager : MonoBehaviour
 {
     [SerializeField] private GameObject trackedObjectPrefab;
-    [SerializeField] private GameObject trackedObjectInfoPrefab;
+    [SerializeField] private GameObject trackedObjectInfoPrefab; // Your World Space Canvas Prefab
     [SerializeField] private GameObject trackedBoundsPrefab;
 
-    // --- NEW UI PANEL REFERENCES ---
-    [Header("Spell UI Panels")]
-    [SerializeField] private GameObject fireSpellPanel;
-    [SerializeField] private GameObject lightSpellPanel;
-    [SerializeField] private GameObject windSpellPanel;
+    [Header("Spell UI Prefabs")]
+    [SerializeField] private GameObject fireSpellPrefab;
+    [SerializeField] private GameObject lightSpellPrefab;
+    [SerializeField] private GameObject windSpellPrefab;
 
     public void OnTrackableAdded(MRUKTrackable trackable)
     {
@@ -23,49 +22,35 @@ public class TrackablesManager : MonoBehaviour
         if (trackable.TrackableType == OVRAnchor.TrackableType.QRCode &&
             trackable.MarkerPayloadString != null)
         {
-            /* COMMENTED OUT ORIGINAL PAYLOAD TEXT LOGIC
-            var trackedObjectInfo = Instantiate(trackedObjectInfoPrefab,
-                trackedObjectInstance. transform);
-            trackedObjectInfo.GetComponentInChildren<TextMeshProUGUI>(). text = 
-                $"<color=red> QR Code Payload:</color>{trackable.MarkerPayloadString}";
-            */
+            // 1. Convert to Uppercase to match your IF statements exactly
+            string payload = trackable.MarkerPayloadString.Trim().ToUpper();
 
-            // --- NEW LOGIC FOR SPELL ACTIVATION ---
-            string payload = trackable.MarkerPayloadString.Trim(); // Trim removes accidental spaces
+            // 2. Instantiate the Canvas (the Info Prefab) as a child of the QR
+            var canvasInstance = Instantiate(trackedObjectInfoPrefab, trackedObjectInstance.transform);
 
-            if (payload == "FIRESPELL")
+            // 3. Choose which spell to SPAWN inside that canvas
+            GameObject spellToSpawn = null;
+            if (payload == "FIRESPELL") spellToSpawn = fireSpellPrefab;
+            else if (payload == "LIGHTSPELL") spellToSpawn = lightSpellPrefab;
+            else if (payload == "WINDSPELL") spellToSpawn = windSpellPrefab;
+
+            if (spellToSpawn != null)
             {
-                fireSpellPanel.SetActive(true);
-            }
-            else if (payload == "LIGHTSPELL")
-            {
-                lightSpellPanel.SetActive(true);
-            }
-            else if (payload == "WINDSPELL")
-            {
-                windSpellPanel.SetActive(true);
+                // Instantiate the spell UI INSIDE the canvas instance
+                Instantiate(spellToSpawn, canvasInstance.transform);
             }
 
+            // --- Bounds Logic ---
             var boundsAreaRect = trackable.PlaneRect.Value;
-            trackedBoundsInstance.transform.localScale = new
-                Vector3(boundsAreaRect.width, boundsAreaRect.height, 0.01f);
-
-            trackedBoundsInstance.transform.localPosition =
-                new Vector3(boundsAreaRect.center.x, boundsAreaRect.center.y, 0.0f);
+            trackedBoundsInstance.transform.localScale = new Vector3(boundsAreaRect.width, boundsAreaRect.height, 0.01f);
+            trackedBoundsInstance.transform.localPosition = new Vector3(boundsAreaRect.center.x, boundsAreaRect.center.y, 0.0f);
         }
     }
 
     public void OnTrackableRemoved(MRUKTrackable trackable)
     {
-        Debug.Log($"Trackable of type {trackable.TrackableType} removed");
-
-        // --- NEW LOGIC TO HIDE PANELS WHEN QR IS LOST ---
-        // (Optional: Remove this if you want the UI to stay visible)
-        string payload = trackable.MarkerPayloadString?.Trim();
-        if (payload == "firespell") fireSpellPanel.SetActive(false);
-        if (payload == "lightspell") lightSpellPanel.SetActive(false);
-        if (payload == "windspell") windSpellPanel.SetActive(false);
-
+        // When the QR is lost, the whole trackable.gameObject is destroyed, 
+        // which automatically kills the UI panels attached to it.
         Destroy(trackable.gameObject);
     }
 }
