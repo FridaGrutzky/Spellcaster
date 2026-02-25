@@ -5,7 +5,7 @@ using TMPro;
 public class TrackablesManager : MonoBehaviour
 {
     [SerializeField] private GameObject trackedObjectPrefab;
-    [SerializeField] private GameObject trackedObjectInfoPrefab; // Your World Space Canvas Prefab
+    [SerializeField] private GameObject trackedObjectInfoPrefab;
     [SerializeField] private GameObject trackedBoundsPrefab;
 
     [Header("Spell UI Prefabs")]
@@ -22,13 +22,11 @@ public class TrackablesManager : MonoBehaviour
         if (trackable.TrackableType == OVRAnchor.TrackableType.QRCode &&
             trackable.MarkerPayloadString != null)
         {
-            // 1. Convert to Uppercase to match your IF statements exactly
             string payload = trackable.MarkerPayloadString.Trim().ToUpper();
 
-            // 2. Instantiate the Canvas (the Info Prefab) as a child of the QR
+            /* --- COMMENTED OUT OLD INDIVIDUAL SPAWNING LOGIC (KEEPING FOR SAFETY) ---
             var canvasInstance = Instantiate(trackedObjectInfoPrefab, trackedObjectInstance.transform);
 
-            // 3. Choose which spell to SPAWN inside that canvas
             GameObject spellToSpawn = null;
             if (payload == "FIRESPELL") spellToSpawn = fireSpellPrefab;
             else if (payload == "LIGHTSPELL") spellToSpawn = lightSpellPrefab;
@@ -36,14 +34,49 @@ public class TrackablesManager : MonoBehaviour
 
             if (spellToSpawn != null)
             {
-                // Instantiate the spell UI INSIDE the canvas instance
                 Instantiate(spellToSpawn, canvasInstance.transform);
             }
+            ------------------------------------------------------- */
 
-            // --- Bounds Logic ---
+            // --- ALL-IN-ONE SEARCH LOGIC ---
+            // We search for the specific GameObjects by name inside the prefab we just spawned.
+            GameObject fireUI = null;
+            GameObject lightUI = null;
+            GameObject windUI = null;
+
+            // This looks through EVERY child and grandchild of the spawned prefab to find the names
+            foreach (Transform child in trackedObjectInstance.GetComponentsInChildren<Transform>(true))
+            {
+                /* --- PREVIOUS FIND LOGIC (COMMENTED OUT) ---
+                // Transform fireUI = trackedObjectInstance.transform.Find("FIRESPELL");
+                // Transform lightUI = trackedObjectInstance.transform.Find("LIGHTSPELL");
+                // Transform windUI = trackedObjectInstance.transform.Find("WINDSPELL");
+                ---------------------------------------------- */
+
+                if (child.name == "FIRESPELL") fireUI = child.gameObject;
+                if (child.name == "LIGHTSPELL") lightUI = child.gameObject;
+                if (child.name == "WINDSPELL") windUI = child.gameObject;
+            }
+
+            // 1. Turn EVERYTHING off first so they don't overlap
+            if (fireUI) fireUI.SetActive(false);
+            if (lightUI) lightUI.SetActive(false);
+            if (windUI) windUI.SetActive(false);
+
+            // 2. Turn on ONLY the one that matches the QR code payload
+            if (payload == "FIRESPELL" && fireUI) fireUI.SetActive(true);
+            else if (payload == "LIGHTSPELL" && lightUI) lightUI.SetActive(true);
+            else if (payload == "WINDSPELL" && windUI) windUI.SetActive(true);
+            // -----------------------------
+
+            // --- Bounds Logic (Centered) ---
             var boundsAreaRect = trackable.PlaneRect.Value;
+            Vector3 localCenter = new Vector3(boundsAreaRect.center.x, boundsAreaRect.center.y, 0.0f);
+
+            // Apply center to both the object and the bounds
+            trackedObjectInstance.transform.localPosition = localCenter;
             trackedBoundsInstance.transform.localScale = new Vector3(boundsAreaRect.width, boundsAreaRect.height, 0.01f);
-            trackedBoundsInstance.transform.localPosition = new Vector3(boundsAreaRect.center.x, boundsAreaRect.center.y, 0.0f);
+            trackedBoundsInstance.transform.localPosition = localCenter;
         }
     }
 
