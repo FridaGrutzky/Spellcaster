@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/im.unity
     guid: 74565f4000e592d409a5cb2f9f0505f7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HandTracking.unity
     guid: 2cba5c90f2ab84248ae8eb8c978e1654
+  - enabled: 1
+    path: Assets/Scenes/im 2.0.unity
+    guid: 5f5a15b8d781a8c498cf9d48ec388c43
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 75b201525bb812346afa597aff726c31, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 1dedce8fdb32b114996d5dc9220df4a6, type: 2}
