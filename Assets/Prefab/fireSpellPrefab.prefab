@@ -565,7 +565,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Welcome to spellcaster!
+  m_text: Welcome to firespell!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d28e6110c9b1a7043b2a8ee8f3689aab, type: 2}
   m_sharedMaterial: {fileID: -1878220399592919276, guid: d28e6110c9b1a7043b2a8ee8f3689aab, type: 2}
