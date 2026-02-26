@@ -7,6 +7,15 @@ public class PassthroughLightController : MonoBehaviour
     public Image darkOverlay;
     public float fadeDuration = 2f;
 
+
+    void Update() // Remove when the script is connected to the spell
+    {
+        // Press L to simulate Light Spell
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            CastLightSpell();
+        }
+    }
     public void CastLightSpell()
     {
         StopAllCoroutines();
