@@ -143,7 +143,7 @@
     },
     "com.unity.editorcoroutines": {
       "version": "1.0.0",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -443,6 +443,13 @@
         "com.unity.xr.legacyinputhelpers": "2.1.2"
       },
       "url": "https://packages.unity.com"
+    },
+    "se.su.dsv.extralitylab.unity": {
+      "version": "https://gitea.dsv.su.se/ExtralityLab/se.su.dsv.extralitylab.unity.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "41d83ab2b24cf8dcf8234c1aa6b2284969fe2c5e"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
