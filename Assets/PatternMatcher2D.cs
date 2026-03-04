@@ -39,7 +39,7 @@ public class PatternMatcher2D : MonoBehaviour
             return;
         }
 
-        Vector2 p = tracker.PlanePoint;
+        Vector2 p = tracker.P;
         Vector2 target = ptn.points[_i];
 
         if (Vector2.Distance(p, target) <= ptn.tolerance)
