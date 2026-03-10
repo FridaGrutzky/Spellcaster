@@ -235,7 +235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &64295603
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -401,7 +401,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614135959}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -909,10 +909,10 @@ MonoBehaviour:
   head: {fileID: 1764941874}
   successSpherePrefab: {fileID: 7733875955768408218, guid: 2e16046ebcbcb6742a86569d82e56cce, type: 3}
   radius: 0.5
-  radialTolerance: 0.12
+  radialTolerance: 0.15
   maxPlaneDepth: 0.75
   sectors: 16
-  requiredSectors: 10
+  requiredSectors: 9
   maxTime: 10
   cooldown: 0
 --- !u!1 &626481702
@@ -965,7 +965,7 @@ MonoBehaviour:
   head: {fileID: 1764941874}
   width: 0.28
   height: 0.28
-  tolerance: 0.25
+  tolerance: 0.4
   maxTime: 8
   cooldown: 0.25
   windPrefab: {fileID: 2357308872161750768, guid: 5c62df41a13f3924191f31d5873dfd91, type: 3}
@@ -994,7 +994,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626481702}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1711,7 +1711,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445491694}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2231,7 +2231,7 @@ MonoBehaviour:
   head: {fileID: 1445491698}
   width: 0.18
   height: 0.66
-  tolerance: 0.25
+  tolerance: 0.5
   maxTime: 10
   cooldown: 0
   lightningPrefab: {fileID: 1810084107407181983, guid: c6dcada4604b3044a89edc1bc70c634e, type: 3}
@@ -2260,7 +2260,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704254496}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
