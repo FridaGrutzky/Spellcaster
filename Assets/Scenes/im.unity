@@ -910,12 +910,12 @@ MonoBehaviour:
   successSpherePrefab: {fileID: 360416787390830049, guid: 9bdb836c8852c5b4d8a61e87c04d768a, type: 3}
   tipSphere: {fileID: 1445491698}
   radius: 0.5
-  radialTolerance: 0.15
+  radialTolerance: 0.25
   maxPlaneDepth: 0.75
   sectors: 16
-  requiredSectors: 9
+  requiredSectors: 10
   maxTime: 10
-  cooldown: 0
+  cooldown: 1
 --- !u!1 &626481702
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,8 +967,8 @@ MonoBehaviour:
   tipSphere: {fileID: 1445491698}
   width: 0.28
   height: 0.28
-  tolerance: 0.4
-  maxTime: 8
+  tolerance: 0.25
+  maxTime: 3
   cooldown: 0.25
   windPrefab: {fileID: 360416787390830049, guid: 9b85535838c17b84ea4e4e7a36839ebb, type: 3}
 --- !u!114 &626481705
@@ -2234,8 +2234,8 @@ MonoBehaviour:
   tipSphere: {fileID: 1445491698}
   width: 0.18
   height: 0.66
-  tolerance: 0.5
-  maxTime: 10
+  tolerance: 0.4
+  maxTime: 3
   cooldown: 0
   lightningPrefab: {fileID: 360416787390830049, guid: aef35279914f8804ca9a0f802d816a4c, type: 3}
 --- !u!114 &1704254499
@@ -3193,11 +3193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7f4260e9499a24ab42b40f55e0f1d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  qrName: WandQR
-  muzzleTransform: {fileID: 755566746}
-  spellPrefab: {fileID: 8464770310638742296, guid: 6814207592d8a02469d2797902dd37b6, type: 3}
-  spellSpeed: 15
-  castAction: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1001 &3325507398980150827
 PrefabInstance:
   m_ObjectHideFlags: 0
