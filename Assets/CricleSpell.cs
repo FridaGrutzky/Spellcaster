@@ -86,37 +86,31 @@ public class CircleSpell : MonoBehaviour
 
     void OnCircleCompleted()
     {
-        if (successSpherePrefab && head)
+        if (!head)
         {
-            Vector3 pos = head.position + head.forward * 1.0f;
-            Instantiate(successSpherePrefab, pos, Quaternion.identity);
+            Debug.Log("No head assigned");
+            return;
+        }
+
+        Vector3 pos = head.position + head.forward * 1.0f;
+
+        GameObject g;
+        if (successSpherePrefab)
+        {
+            g = Instantiate(successSpherePrefab, pos, Quaternion.identity);
         }
         else
         {
-            Debug.Log("Circle completed! Assign successSpherePrefab + head.");
+            g = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            Destroy(g.GetComponent<Collider>());
+            g.transform.position = pos;
+            g.transform.localScale = Vector3.one * 0.25f;
         }
 
         _cooldownUntil = Time.time + cooldown;
         ResetProgress();
-
-        {
-            if (!head)
-            {
-                Debug.Log("No head assigned");
-                return;
-            }
-
-            Vector3 pos = head.position + head.forward * 1.0f;
-
-            GameObject g = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            Destroy(g.GetComponent<Collider>());
-            g.transform.position = pos;
-            g.transform.localScale = Vector3.one * 0.25f; // STOR så du ser den
-
-            _cooldownUntil = Time.time + cooldown;
-            ResetProgress();
-        }
     }
+
 
     void ResetProgress()
     {
