@@ -907,7 +907,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tracker: {fileID: 491220469}
   head: {fileID: 1764941874}
-  successSpherePrefab: {fileID: 7733875955768408218, guid: 2e16046ebcbcb6742a86569d82e56cce, type: 3}
+  successSpherePrefab: {fileID: 360416787390830049, guid: 9bdb836c8852c5b4d8a61e87c04d768a, type: 3}
+  tipSphere: {fileID: 1445491698}
   radius: 0.5
   radialTolerance: 0.15
   maxPlaneDepth: 0.75
@@ -963,12 +964,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tracker: {fileID: 491220469}
   head: {fileID: 1764941874}
+  tipSphere: {fileID: 1445491698}
   width: 0.28
   height: 0.28
   tolerance: 0.4
   maxTime: 8
   cooldown: 0.25
-  windPrefab: {fileID: 2357308872161750768, guid: 5c62df41a13f3924191f31d5873dfd91, type: 3}
+  windPrefab: {fileID: 360416787390830049, guid: 9b85535838c17b84ea4e4e7a36839ebb, type: 3}
 --- !u!114 &626481705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2229,12 +2231,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tracker: {fileID: 491220469}
   head: {fileID: 1445491698}
+  tipSphere: {fileID: 1445491698}
   width: 0.18
   height: 0.66
   tolerance: 0.5
   maxTime: 10
   cooldown: 0
-  lightningPrefab: {fileID: 1810084107407181983, guid: c6dcada4604b3044a89edc1bc70c634e, type: 3}
+  lightningPrefab: {fileID: 360416787390830049, guid: aef35279914f8804ca9a0f802d816a4c, type: 3}
 --- !u!114 &1704254499
 MonoBehaviour:
   m_ObjectHideFlags: 0
