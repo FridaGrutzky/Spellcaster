@@ -2,14 +2,14 @@ using UnityEngine;
 
 [ExecuteAlways]
 [RequireComponent(typeof(LineRenderer))]
-public class DrawLightningOnPlane : MonoBehaviour
+public class DrawTriangleOnPlane : MonoBehaviour
 {
     public Transform drawingPlane;
     public Transform viewer;
     public float offset = 0.05f;
 
-    [Header("Lightning size")]
-    public float width = 0.18f;
+    [Header("Triangle size")]
+    public float width = 0.28f;
     public float height = 0.28f;
 
     void OnEnable() => Draw();
@@ -27,9 +27,9 @@ public class DrawLightningOnPlane : MonoBehaviour
 
         var lr = GetComponent<LineRenderer>();
         lr.useWorldSpace = true;
-        lr.loop = false;
+        lr.loop = true;
         lr.alignment = LineAlignment.View;
-        lr.positionCount = 5;
+        lr.positionCount = 3;
 
         Vector3 normal = drawingPlane.up;
         Vector3 axisA = drawingPlane.right;
@@ -46,11 +46,9 @@ public class DrawLightningOnPlane : MonoBehaviour
 
         Vector2[] shape = new Vector2[]
         {
-            new Vector2(-0.20f,  0.50f),
-            new Vector2( 0.05f,  0.10f),
-            new Vector2(-0.05f,  0.10f),
-            new Vector2( 0.20f, -0.50f),
-            new Vector2( 0.00f, -0.05f),
+            new Vector2( 0.00f,  0.50f),   // topp
+            new Vector2(-0.45f, -0.35f),   // vänster hörn
+            new Vector2( 0.45f, -0.35f),   // höger hörn
         };
 
         for (int i = 0; i < shape.Length; i++)
