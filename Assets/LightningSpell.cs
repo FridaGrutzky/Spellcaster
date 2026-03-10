@@ -5,6 +5,7 @@ public class LightningSpell : MonoBehaviour
     [Header("Refs")]
     public TipToPlane2D tracker;
     public Transform head;
+    public Transform tipSphere; // NY: Referens till spetsen
 
     [Header("Lightning shape")]
     public float width = 0.18f;
@@ -22,13 +23,11 @@ public class LightningSpell : MonoBehaviour
 
     Vector2[] _points =
     {
-    new Vector2(-0.10f,  0.50f),  // topp
-    new Vector2( 0.12f,  0.12f),  // in mot mitten från höger
-    new Vector2(-0.25f,  0.12f),  // längre horisontellt streck åt vänster
-    new Vector2( 0.10f, -0.50f),  // neråt igen
-    new Vector2( 0.00f, -0.05f),  // liten avslutning
-    
-
+        new Vector2(-0.10f,  0.50f),  // topp
+        new Vector2( 0.12f,  0.12f),  // in mot mitten från höger
+        new Vector2(-0.25f,  0.12f),  // längre horisontellt streck åt vänster
+        new Vector2( 0.10f, -0.50f),  // neråt igen
+        new Vector2( 0.00f, -0.05f),  // liten avslutning
     };
 
     void Start()
@@ -64,17 +63,40 @@ public class LightningSpell : MonoBehaviour
 
     void OnLightningCompleted()
     {
+        /* GAMMAL KOD:
         if (!head)
         {
             Debug.Log("No head assigned");
             return;
         }
-
         Vector3 pos = head.position + head.forward * 1.0f;
-
         if (lightningPrefab)
         {
             Instantiate(lightningPrefab, pos, Quaternion.identity);
+        }
+        */
+
+        // NY KOD (Samma som CircleSpell):
+        if (!tipSphere || !head)
+        {
+            Debug.Log("Missing TipSphere or Head!");
+            return;
+        }
+
+        Vector3 pos = tipSphere.position + tipSphere.forward * 0.1f;
+
+        if (lightningPrefab)
+        {
+            GameObject g = Instantiate(lightningPrefab, tipSphere.position, tipSphere.rotation);
+            Vector3 directionAwayFromYou = (tipSphere.position - head.position).normalized;
+            g.transform.forward = directionAwayFromYou;
+
+            Rigidbody rb = g.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.linearVelocity = directionAwayFromYou * 15f;
+            }
+            Destroy(g, 3f);
         }
 
         _cooldownUntil = Time.time + cooldown;

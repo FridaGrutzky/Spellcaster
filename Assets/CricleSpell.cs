@@ -6,6 +6,7 @@ public class CircleSpell : MonoBehaviour
     public TipToPlane2D tracker;
     public Transform head;                 // CenterEyeAnchor
     public GameObject successSpherePrefab; // prefab att spawna vid success
+    public Transform tipSphere; // Dra in din TipSphere här i Inspectorn!
 
     [Header("Circle template (2D on plane)")]
     public float radius = 0.25f;
@@ -84,33 +85,85 @@ public class CircleSpell : MonoBehaviour
         }
     }
 
+    /*  void OnCircleCompleted()
+      {
+          // Vi kollar så att tipSphere finns
+          if (!tipSphere)
+          {
+              Debug.Log("No TipSphere assigned!");
+              return;
+          }
+
+          // Nu sätter vi positionen exakt där din TipSphere är just nu
+          Vector3 pos = tipSphere.position + tipSphere.forward * 0.1f;
+
+          GameObject g;
+          if (successSpherePrefab)
+          {
+              // Vi skapar effekten vid spetsen och låter den ha samma rotation som spetsen
+              g = Instantiate(successSpherePrefab, tipSphere.position, tipSphere.rotation);
+              Destroy(g, 3f); // Kortare tid om det är små gnistor
+          }
+          else
+          {
+              g = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+              Destroy(g.GetComponent<Collider>());
+              g.transform.position = pos;
+              g.transform.localScale = Vector3.one * 0.05f; // Gör även reserv-bollen liten
+              Destroy(g, 1f);
+          }
+
+          _cooldownUntil = Time.time + cooldown;
+          ResetProgress();
+      }
+    */
+
+
+
     void OnCircleCompleted()
     {
-        if (!head)
+        if (!tipSphere || !head) // Vi behöver 'head' (kameran) för att veta var DU är
         {
-            Debug.Log("No head assigned");
+            Debug.Log("Missing TipSphere or Head!");
             return;
         }
 
-        Vector3 pos = head.position + head.forward * 1.0f;
+        Vector3 pos = tipSphere.position + tipSphere.forward * 0.1f;
 
         GameObject g;
         if (successSpherePrefab)
         {
-            g = Instantiate(successSpherePrefab, pos, Quaternion.identity);
+            // 1. Skapa den vid spetsen
+            g = Instantiate(successSpherePrefab, tipSphere.position, tipSphere.rotation);
+
+            // 2. FIXEN: Räkna ut riktningen från ditt huvud till spetsen
+            // Det här gör att den ALLTID flyger bort från dig, oavsett rotation
+            Vector3 directionAwayFromYou = (tipSphere.position - head.position).normalized;
+
+            // 3. Tvinga partiklarna att peka i den riktningen
+            g.transform.forward = directionAwayFromYou;
+
+            // 4. Om du har en Rigidbody, skjut iväg den i samma riktning
+            Rigidbody rb = g.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.linearVelocity = directionAwayFromYou * 15f;
+            }
+
+            Destroy(g, 3f);
         }
         else
         {
             g = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             Destroy(g.GetComponent<Collider>());
             g.transform.position = pos;
-            g.transform.localScale = Vector3.one * 0.25f;
+            g.transform.localScale = Vector3.one * 0.05f;
+            Destroy(g, 1f);
         }
 
         _cooldownUntil = Time.time + cooldown;
         ResetProgress();
     }
-
 
     void ResetProgress()
     {
