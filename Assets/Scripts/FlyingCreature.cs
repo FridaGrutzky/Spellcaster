@@ -18,4 +18,9 @@ public class FlyingCreature : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        Die();
+    }
 }

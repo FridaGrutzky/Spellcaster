@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 1982033824}
   - component: {fileID: 1982033828}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: FlyingCreature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
