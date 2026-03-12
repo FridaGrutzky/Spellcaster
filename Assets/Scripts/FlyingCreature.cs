@@ -21,6 +21,7 @@ public class FlyingCreature : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
+        Debug.Log("a particle touched me");
         Die();
     }
 }

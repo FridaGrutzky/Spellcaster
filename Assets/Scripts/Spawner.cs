@@ -6,13 +6,15 @@ public class Spawner : MonoBehaviour
     public Vector3 boxSize = new Vector3(5, 3, 5);
     public float interval = 10f;       // Tid mellan spawns
 
-    Transform center;           // Mittpunkten för området
+    public Transform center;           // Mittpunkten för området
     float timer;
 
+    /*
     private void Awake()
     {
         center = transform;
     }
+    */
 
     void Update()
     {
