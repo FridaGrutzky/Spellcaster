@@ -3,7 +3,7 @@ using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using System.Text;
 
-public class ArduinoMQTTKeyboardM2Mqtt : MonoBehaviour
+public class ArduinoController : MonoBehaviour
 {
     private MqttClient client;
     private string broker = "test.mosquitto.org";
