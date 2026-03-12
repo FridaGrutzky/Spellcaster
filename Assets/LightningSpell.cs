@@ -1,75 +1,111 @@
 using UnityEngine;
 
-public class LightningSpell : BaseSpellGesture
+public class LightningSpell : MonoBehaviour
 {
+    [Header("Refs")]
+    public TipToPlane2D tracker;
+    public Transform head;
+    public Transform tipSphere; // NY: Referens till spetsen
+
     [Header("Lightning shape")]
     public float width = 0.18f;
     public float height = 0.28f;
     public float tolerance = 0.18f;
     public float maxTime = 10f;
+    public float cooldown = 0f;
 
-    private int currentPoint = 0;
-    private float t0;
-    private bool complete;
-    private float score;
+    [Header("Spawn")]
+    public GameObject lightningPrefab;
 
-    private Vector2[] points =
+    int _currentPoint = 0;
+    float _t0;
+    float _cooldownUntil;
+
+    Vector2[] _points =
     {
-        new Vector2(-0.10f,  0.50f),
-        new Vector2( 0.12f,  0.12f),
-        new Vector2(-0.25f,  0.12f),
-        new Vector2( 0.10f, -0.50f),
-        new Vector2( 0.00f, -0.05f),
+        new Vector2(-0.10f,  0.50f),  // topp
+        new Vector2( 0.12f,  0.12f),  // in mot mitten från höger
+        new Vector2(-0.25f,  0.12f),  // längre horisontellt streck åt vänster
+        new Vector2( 0.10f, -0.50f),  // neråt igen
+        new Vector2( 0.00f, -0.05f),  // liten avslutning
     };
 
-    public override float Score => score;
-    public override bool IsComplete => complete;
-
-    void Awake()
+    void Start()
     {
-        ResetGesture();
+        ResetProgress();
     }
 
-    public override void Process()
+    void Update()
     {
-        if (tracker == null || complete)
-            return;
+        if (tracker == null || head == null) return;
+        if (Time.time < _cooldownUntil) return;
 
-        if (Time.time - t0 > maxTime)
-        {
-            ResetGesture();
-            return;
-        }
+        if (Time.time - _t0 > maxTime)
+            ResetProgress();
 
         Vector2 p = tracker.P;
 
         Vector2 target = new Vector2(
-            points[currentPoint].x * width,
-            points[currentPoint].y * height
+            _points[_currentPoint].x * width,
+            _points[_currentPoint].y * height
         );
 
-        float dist = Vector2.Distance(p, target);
-        float pointQuality = 1f - Mathf.Clamp01(dist / tolerance);
-
-        score = currentPoint + pointQuality;
-
-        if (dist <= tolerance)
+        if (Vector2.Distance(p, target) <= tolerance)
         {
-            currentPoint++;
+            _currentPoint++;
 
-            if (currentPoint >= points.Length)
+            if (_currentPoint >= _points.Length)
             {
-                complete = true;
-                score = points.Length + 1f;
+                OnLightningCompleted();
             }
         }
     }
 
-    public override void ResetGesture()
+    void OnLightningCompleted()
     {
-        currentPoint = 0;
-        t0 = Time.time;
-        complete = false;
-        score = 0f;
+        /* GAMMAL KOD:
+        if (!head)
+        {
+            Debug.Log("No head assigned");
+            return;
+        }
+        Vector3 pos = head.position + head.forward * 1.0f;
+        if (lightningPrefab)
+        {
+            Instantiate(lightningPrefab, pos, Quaternion.identity);
+        }
+        */
+
+        // NY KOD (Samma som CircleSpell):
+        if (!tipSphere || !head)
+        {
+            Debug.Log("Missing TipSphere or Head!");
+            return;
+        }
+
+        Vector3 pos = tipSphere.position + tipSphere.forward * 0.1f;
+
+        if (lightningPrefab)
+        {
+            GameObject g = Instantiate(lightningPrefab, tipSphere.position, tipSphere.rotation);
+            Vector3 directionAwayFromYou = (tipSphere.position - head.position).normalized;
+            g.transform.forward = directionAwayFromYou;
+
+            Rigidbody rb = g.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.linearVelocity = directionAwayFromYou * 15f;
+            }
+            Destroy(g, 3f);
+        }
+
+        _cooldownUntil = Time.time + cooldown;
+        ResetProgress();
+    }
+
+    void ResetProgress()
+    {
+        _currentPoint = 0;
+        _t0 = Time.time;
     }
 }

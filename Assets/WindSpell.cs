@@ -1,75 +1,109 @@
 using UnityEngine;
 
-public class WindSpell : BaseSpellGesture
+public class WindSpell : MonoBehaviour
 {
+    [Header("Refs")]
+    public TipToPlane2D tracker;
+    public Transform head;
+    public Transform tipSphere; // NY: Referens till spetsen
+
     [Header("Triangle shape")]
     public float width = 0.28f;
     public float height = 0.28f;
     public float tolerance = 0.22f;
     public float maxTime = 8f;
+    public float cooldown = 0.25f;
 
-    private int currentPoint = 0;
-    private float t0;
-    private bool complete;
-    private float score;
+    [Header("Spawn")]
+    public GameObject windPrefab;
 
-    private Vector2[] points =
+    int _currentPoint = 0;
+    float _t0;
+    float _cooldownUntil;
+
+    Vector2[] _points =
     {
-        new Vector2( 0.00f,  0.50f),
-        new Vector2(-0.45f, -0.35f),
-        new Vector2( 0.45f, -0.35f),
+        new Vector2( 0.00f,  0.50f),   // topp
+        new Vector2(-0.45f, -0.35f),   // vänster
+        new Vector2( 0.45f, -0.35f),   // höger
     };
 
-    public override float Score => score;
-    public override bool IsComplete => complete;
-
-    void Awake()
+    void Start()
     {
-        ResetGesture();
+        ResetProgress();
     }
 
-    public override void Process()
+    void Update()
     {
-        if (tracker == null || complete)
-            return;
+        if (tracker == null || head == null) return;
+        if (Time.time < _cooldownUntil) return;
 
-        if (Time.time - t0 > maxTime)
-        {
-            ResetGesture();
-            return;
-        }
+        if (Time.time - _t0 > maxTime)
+            ResetProgress();
 
         Vector2 p = tracker.P;
 
         Vector2 target = new Vector2(
-            points[currentPoint].x * width,
-            points[currentPoint].y * height
+            _points[_currentPoint].x * width,
+            _points[_currentPoint].y * height
         );
 
-        float dist = Vector2.Distance(p, target);
-
-        // Ju närmare aktuell target, desto bättre del-score
-        float pointQuality = 1f - Mathf.Clamp01(dist / tolerance);
-
-        score = currentPoint + pointQuality;
-
-        if (dist <= tolerance)
+        if (Vector2.Distance(p, target) <= tolerance)
         {
-            currentPoint++;
+            _currentPoint++;
 
-            if (currentPoint >= points.Length)
+            if (_currentPoint >= _points.Length)
             {
-                complete = true;
-                score = points.Length + 1f;
+                OnWindCompleted();
             }
         }
     }
 
-    public override void ResetGesture()
+    void OnWindCompleted()
     {
-        currentPoint = 0;
-        t0 = Time.time;
-        complete = false;
-        score = 0f;
+        /* GAMMAL KOD:
+        if (!head)
+        {
+            Debug.Log("No head assigned");
+            return;
+        }
+        Vector3 pos = head.position + head.forward * 1.0f;
+        if (windPrefab)
+        {
+            Instantiate(windPrefab, pos, Quaternion.identity);
+        }
+        */
+
+        // NY KOD (Samma som CircleSpell):
+        if (!tipSphere || !head)
+        {
+            Debug.Log("Missing TipSphere or Head!");
+            return;
+        }
+
+        Vector3 pos = tipSphere.position + tipSphere.forward * 0.1f;
+
+        if (windPrefab)
+        {
+            GameObject g = Instantiate(windPrefab, tipSphere.position, tipSphere.rotation);
+            Vector3 directionAwayFromYou = (tipSphere.position - head.position).normalized;
+            g.transform.forward = directionAwayFromYou;
+
+            Rigidbody rb = g.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.linearVelocity = directionAwayFromYou * 15f;
+            }
+            Destroy(g, 3f);
+        }
+
+        _cooldownUntil = Time.time + cooldown;
+        ResetProgress();
+    }
+
+    void ResetProgress()
+    {
+        _currentPoint = 0;
+        _t0 = Time.time;
     }
 }

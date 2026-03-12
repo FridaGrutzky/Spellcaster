@@ -1,6 +1,6 @@
 using UnityEngine;
 
-/*public class SpellButton : MonoBehaviour
+public class SpellButton : MonoBehaviour
 {
     public Spell spell;
 
@@ -9,4 +9,3 @@ using UnityEngine;
         SpellManager.Instance.SelectSpell(spell);
     }
 }
-*/
