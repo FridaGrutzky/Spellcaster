@@ -1238,6 +1238,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1558422336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1199284490 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7276341075241505449, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+  m_PrefabInstance: {fileID: 1893771330}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1221894370 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 159718, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
@@ -2201,9 +2212,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1764941874}
     m_Modifications:
+    - target: {fileID: 277147759464499420, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_text
+      value: Scan a QR code
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220354186478125035, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 142
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406235735107475634, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602532624674189476, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413210954118919125, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_Name
+      value: Scan a QR code
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572834962032107126, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -87.8
+      objectReference: {fileID: 0}
     - target: {fileID: 5198845985159317737, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
       propertyPath: m_Name
       value: Tutorial UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6055657211077085302, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_Name
+      value: Perform a music spell
       objectReference: {fileID: 0}
     - target: {fileID: 8883694625714314775, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
       propertyPath: m_Pivot.x
@@ -2288,8 +2327,69 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5198845985159317737, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1893771335}
   m_SourcePrefab: {fileID: 100100000, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+--- !u!114 &1893771331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 244312558211345634, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+  m_PrefabInstance: {fileID: 1893771330}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1893771332 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8013793555786013544, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+  m_PrefabInstance: {fileID: 1893771330}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1893771333 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 277147759464499420, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+  m_PrefabInstance: {fileID: 1893771330}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1893771334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5198845985159317737, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+  m_PrefabInstance: {fileID: 1893771330}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1893771335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893771334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d6115b32ae28974d8d521081bd46e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  step1Text: {fileID: 1893771333}
+  step2Text: {fileID: 1893771332}
+  step3Text: {fileID: 1893771331}
+  step4Text: {fileID: 1199284490}
+  step1Label: Open the spellbook
+  step2Label: Perform a lightning spell
+  step3Label: Perform a music spell
+  step4Label: Perform a fire spell
 --- !u!1 &1910238469 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
@@ -2752,6 +2852,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 491220469}
     - target: {fileID: 8897213496852063322, guid: a2b4c919fbd37e94a90b1bbace826d3a, type: 3}
+      propertyPath: checklist
+      value: 
+      objectReference: {fileID: 1893771335}
+    - target: {fileID: 8897213496852063322, guid: a2b4c919fbd37e94a90b1bbace826d3a, type: 3}
       propertyPath: tipSphere
       value: 
       objectReference: {fileID: 1445491698}
@@ -2862,9 +2966,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 634756052752651176, guid: 6c085551075d6ae44bdcf44edb78214a, type: 3}
+      propertyPath: qrAnchor
+      value: 
+      objectReference: {fileID: 3556983585031118479, guid: a85c222ca402a7f4ab016f08fb22e105, type: 3}
+    - target: {fileID: 634756052752651176, guid: 6c085551075d6ae44bdcf44edb78214a, type: 3}
       propertyPath: _pageText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 634756052752651176, guid: 6c085551075d6ae44bdcf44edb78214a, type: 3}
+      propertyPath: checklist
+      value: 
+      objectReference: {fileID: 1893771335}
     - target: {fileID: 1552688726446914255, guid: 6c085551075d6ae44bdcf44edb78214a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 166.3

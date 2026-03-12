@@ -5,7 +5,8 @@ public class WindSpell : MonoBehaviour
     [Header("Refs")]
     public TipToPlane2D tracker;
     public Transform head;
-    public Transform tipSphere; // NY: Referens till spetsen
+    public Transform tipSphere;
+    public TutorialChecklist checklist; // Link this in the Inspector
 
     [Header("Triangle shape")]
     public float width = 0.28f;
@@ -21,67 +22,29 @@ public class WindSpell : MonoBehaviour
     float _t0;
     float _cooldownUntil;
 
-    Vector2[] _points =
-    {
-        new Vector2( 0.00f,  0.50f),   // topp
-        new Vector2(-0.45f, -0.35f),   // vänster
-        new Vector2( 0.45f, -0.35f),   // höger
-    };
+    Vector2[] _points = { new Vector2(0.00f, 0.50f), new Vector2(-0.45f, -0.35f), new Vector2(0.45f, -0.35f) };
 
-    void Start()
-    {
-        ResetProgress();
-    }
+    void Start() { ResetProgress(); }
 
     void Update()
     {
         if (tracker == null || head == null) return;
         if (Time.time < _cooldownUntil) return;
-
-        if (Time.time - _t0 > maxTime)
-            ResetProgress();
+        if (Time.time - _t0 > maxTime) ResetProgress();
 
         Vector2 p = tracker.P;
-
-        Vector2 target = new Vector2(
-            _points[_currentPoint].x * width,
-            _points[_currentPoint].y * height
-        );
+        Vector2 target = new Vector2(_points[_currentPoint].x * width, _points[_currentPoint].y * height);
 
         if (Vector2.Distance(p, target) <= tolerance)
         {
             _currentPoint++;
-
-            if (_currentPoint >= _points.Length)
-            {
-                OnWindCompleted();
-            }
+            if (_currentPoint >= _points.Length) OnWindCompleted();
         }
     }
 
     void OnWindCompleted()
     {
-        /* GAMMAL KOD:
-        if (!head)
-        {
-            Debug.Log("No head assigned");
-            return;
-        }
-        Vector3 pos = head.position + head.forward * 1.0f;
-        if (windPrefab)
-        {
-            Instantiate(windPrefab, pos, Quaternion.identity);
-        }
-        */
-
-        // NY KOD (Samma som CircleSpell):
-        if (!tipSphere || !head)
-        {
-            Debug.Log("Missing TipSphere or Head!");
-            return;
-        }
-
-        Vector3 pos = tipSphere.position + tipSphere.forward * 0.1f;
+        if (!tipSphere || !head) return;
 
         if (windPrefab)
         {
@@ -90,20 +53,16 @@ public class WindSpell : MonoBehaviour
             g.transform.forward = directionAwayFromYou;
 
             Rigidbody rb = g.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.linearVelocity = directionAwayFromYou * 15f;
-            }
+            if (rb != null) rb.linearVelocity = directionAwayFromYou * 15f;
             Destroy(g, 3f);
         }
+
+        // TRIGGER CHECKLIST (Using Step 3 as an example)
+        if (checklist != null) checklist.CompleteStep3();
 
         _cooldownUntil = Time.time + cooldown;
         ResetProgress();
     }
 
-    void ResetProgress()
-    {
-        _currentPoint = 0;
-        _t0 = Time.time;
-    }
+    void ResetProgress() { _currentPoint = 0; _t0 = Time.time; }
 }

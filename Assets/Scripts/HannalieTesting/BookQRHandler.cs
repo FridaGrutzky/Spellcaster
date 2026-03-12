@@ -1,41 +1,40 @@
 using UnityEngine;
-using Meta.XR.MRUtilityKit;
-using TMPro;
+using UnityEngine.XR.ARFoundation;
 
-public class QRBookManager : MonoBehaviour
+public class BookQRHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject _bookUI;
-    [SerializeField] private TextMeshProUGUI _pageText;
+    public string bookMarkerName = "BookQR";
+    public GameObject qrAnchor;
+    public TutorialChecklist checklist; // 1. ADD THIS LINE
 
-    // Triggered by MRUK Event Utilities
-    public void OnTrackableAdded(MRUKTrackable trackable)
+    private ARTrackedImageManager imageManager;
+
+    void Awake() => imageManager = GetComponentInParent<ARTrackedImageManager>();
+
+    void OnEnable() => imageManager.trackedImagesChanged += OnChanged;
+    void OnDisable() => imageManager.trackedImagesChanged -= OnChanged;
+
+    void OnChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
-        if (trackable.TrackableType == OVRAnchor.TrackableType.QRCode)
+        foreach (var trackedImage in eventArgs.added)
         {
-            _bookUI.SetActive(true);
-            UpdateSpellText(trackable.MarkerPayloadString);
+            if (trackedImage.referenceImage.name == bookMarkerName)
+            {
+                qrAnchor.SetActive(true);
+
+                // 2. ADD THIS LINE TO STRIKETHROUGH THE TEXT
+                if (checklist != null) checklist.CompleteStep1();
+            }
         }
-    }
 
-    // Triggered by your UI Button (On Click)
-    public void CloseUI()
-    {
-        _bookUI.SetActive(false);
-    }
-
-    private void UpdateSpellText(string payload)
-    {
-        switch (payload.ToUpper().Trim())
+        foreach (var trackedImage in eventArgs.updated)
         {
-            case "FIRESPELL":
-                _pageText.text = "<color=red>FIRE SPELL</color>\n\nSummoning a wall of flame...";
-                break;
-            case "LIGHTSPELL":
-                _pageText.text = "<color=yellow>LIGHT SPELL</color>\n\nA holy radiance appears.";
-                break;
-            default:
-                _pageText.text = "Reading scroll...\nDetected: " + payload;
-                break;
+            if (trackedImage.referenceImage.name == bookMarkerName)
+            {
+                // Ensure it stays active and checklist stays updated
+                qrAnchor.SetActive(true);
+                if (checklist != null) checklist.CompleteStep1();
+            }
         }
     }
 }
