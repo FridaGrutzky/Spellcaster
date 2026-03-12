@@ -23,6 +23,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/LinusTesting.unity
     guid: dc3fb3c0b3b714548a14b008f89c298b
+  - enabled: 0
+    path: Assets/Samples/ExtralityLab@DSV/0.2.1/MQTT-Comm/ExtralityLab-Mqtt Client
+      Example.unity
+    guid: c49fd04c3de3f42e599500bd3f4861b5
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 75b201525bb812346afa597aff726c31, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 1dedce8fdb32b114996d5dc9220df4a6, type: 2}

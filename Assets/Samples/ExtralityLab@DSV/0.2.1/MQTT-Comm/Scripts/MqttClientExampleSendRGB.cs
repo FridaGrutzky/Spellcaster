@@ -1,4 +1,4 @@
-﻿/*using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using M2MqttUnity;
 using UnityEngine;
@@ -43,7 +43,6 @@ namespace ExtralityLab
         {
             base.OnConnected();
             Debug.Log($"MQTT: {publishTopicName} connected!");
-            PublishTopicValue();
         }
 
         private void OnDestroy()
@@ -71,9 +70,15 @@ namespace ExtralityLab
             PublishTopicValue();
         }
 
+        public void TriggerLightningSpell()
+        {
+            message = "lightning";
+            PublishTopicValue();
+        }
+
         public void PublishTopicValue()
         {
-            message = $"{valueRed}, {valueGreen}, {valueBlue}";
+           // message = $"{valueRed}, {valueGreen}, {valueBlue}";
 
             client.Publish(publishTopicName,
                             System.Text.Encoding.UTF8.GetBytes(message),
@@ -82,4 +87,4 @@ namespace ExtralityLab
         }
         
     }
-}*/
+}

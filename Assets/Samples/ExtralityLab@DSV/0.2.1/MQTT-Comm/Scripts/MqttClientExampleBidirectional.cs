@@ -1,4 +1,4 @@
-﻿/*using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using M2MqttUnity;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using UnityEngine;
@@ -9,9 +9,9 @@ namespace ExtralityLab
     public class MqttClientExampleBidirectional : M2MqttUnityClient
     {
         [Header("Topics Config")]
-        public string publishTopicName = "myUnityApp/digital";
+        public string publishTopicName = "7338/D13_led";
 
-        public string subscribedTopic = "myUnityApp/message";
+        public string subscribedTopic = "7338/D13_led";
 
         private List<string> eventMessages = new List<string>();
 
@@ -118,4 +118,4 @@ namespace ExtralityLab
         } 
         
     }
-}*/
+}

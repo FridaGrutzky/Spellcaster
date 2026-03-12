@@ -1,8 +1,10 @@
 using UnityEngine;
+using ExtralityLab;
 
 public class SpellManager : MonoBehaviour
 {
     [SerializeField] private BaseSpellGesture[] spells;
+    [SerializeField] private MqttClientExampleSendRGB mqttSender;
 
     void Update()
     {
@@ -12,10 +14,10 @@ public class SpellManager : MonoBehaviour
         BaseSpellGesture bestSpell = null;
         float bestScore = float.MinValue;
 
-        // Låt alla spells uppdatera sin recognition
         foreach (var spell in spells)
         {
-            if (spell == null) continue;
+            if (spell == null)
+                continue;
 
             spell.Process();
 
@@ -29,12 +31,22 @@ public class SpellManager : MonoBehaviour
             }
         }
 
-        // Bara en spell får skjutas
         if (bestSpell != null)
         {
             bestSpell.Cast();
 
-            // Reseta alla så att ingen annan skjuts samtidigt
+            if (bestSpell is LightningSpell)
+            {
+                if (mqttSender != null)
+                {
+                    mqttSender.TriggerLightningSpell();
+                }
+                else
+                {
+                    Debug.LogWarning("MQTT sender saknas i SpellManager.");
+                }
+            }
+
             foreach (var spell in spells)
             {
                 if (spell != null)

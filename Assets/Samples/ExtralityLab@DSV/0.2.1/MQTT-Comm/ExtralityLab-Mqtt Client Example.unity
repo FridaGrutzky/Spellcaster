@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 980688353}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ExtralityLab.MqttClientExampleReceiveDigital, Assembly-CSharp
         m_MethodName: SubscribeToMqttTopic
         m_Mode: 1
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 500566448}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ExtralityLab.MqttClientExampleSendRGB, Assembly-CSharp
         m_MethodName: SetValueBlue
         m_Mode: 0
@@ -795,7 +795,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 980688353}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ExtralityLab.MqttClientExampleReceiveDigital, Assembly-CSharp
         m_MethodName: UnsubscribeFromTopic
         m_Mode: 1
@@ -961,7 +961,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: false
+          m_StringArgument: led_off
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &283488917
@@ -1273,19 +1273,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1f9428cc3e84629b39f47f1856d4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokerAddress: inf-liva-server-eth.dsv.local.su.se
+  brokerAddress: broker.hivemq.com
   brokerPort: 1883
   isEncrypted: 0
   connectionDelay: 500
   timeoutOnConnection: 30000
-  autoConnect: 0
-  mqttUserName: unity
-  mqttPassword: extrality
-  publishTopicName: myUnityApp/analogRGB
+  autoConnect: 1
+  mqttUserName: 
+  mqttPassword: 
+  publishTopicName: 7338/D13_led
   valueRed: 0
   valueGreen: 0
   valueBlue: 0
-  message: 
+  message: led_on
 --- !u!4 &500566449
 Transform:
   m_ObjectHideFlags: 0
@@ -1614,7 +1614,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 500566448}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ExtralityLab.MqttClientExampleSendRGB, Assembly-CSharp
         m_MethodName: SetValueRed
         m_Mode: 0
@@ -2180,15 +2180,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879a4434ba811435a9ef135ed6599d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokerAddress: inf-liva-server-eth.dsv.local.su.se
+  brokerAddress: test.mosquitto.org
   brokerPort: 1883
   isEncrypted: 0
   connectionDelay: 500
   timeoutOnConnection: 30000
   autoConnect: 0
-  mqttUserName: unity
-  mqttPassword: extrality
-  subscribedTopic: myUnityApp/analogRGB
+  mqttUserName: 
+  mqttPassword: 
+  subscribedTopic: frida/analogRGB
   autoSubscribe: 0
   virtualLightRGB: {fileID: 306424181}
   currentColor: {r: 0, g: 0, b: 0, a: 0}
@@ -2636,15 +2636,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929097cc73ad448c9b244c29d1cdec93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokerAddress: broker.hivemq.com
+  brokerAddress: test.mosquitto.org
   brokerPort: 1883
   isEncrypted: 0
   connectionDelay: 500
   timeoutOnConnection: 30000
-  autoConnect: 1
-  mqttUserName: unity
-  mqttPassword: extrality
-  subscribedTopic: linus/arduino
+  autoConnect: 0
+  mqttUserName: 
+  mqttPassword: 
+  subscribedTopic: frida/digital
   autoSubscribe: 0
   virtualLightRGB: {fileID: 133431590}
   currentState: 0
@@ -3618,7 +3618,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 500566448}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ExtralityLab.MqttClientExampleSendRGB, Assembly-CSharp
         m_MethodName: SetValueGreen
         m_Mode: 0
@@ -4126,7 +4126,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 806587043}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ExtralityLab.MqttClientExampleReceiveRGB, Assembly-CSharp
         m_MethodName: SubscribeToMqttTopic
         m_Mode: 1
@@ -4358,7 +4358,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 806587043}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ExtralityLab.MqttClientExampleReceiveRGB, Assembly-CSharp
         m_MethodName: UnsubscribeFromTopic
         m_Mode: 1
@@ -5143,16 +5143,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782227dec2fc4f22b184d846f1c3a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokerAddress: broker.hivemq.com
+  brokerAddress: test.mosquitto.org
   brokerPort: 1883
   isEncrypted: 0
   connectionDelay: 500
   timeoutOnConnection: 30000
-  autoConnect: 1
-  mqttUserName: unity
-  mqttPassword: extrality
-  publishTopicName: linus/arduino
-  subscribedTopic: linus/arduino
+  autoConnect: 0
+  mqttUserName: IM_Group3_Spell
+  mqttPassword: 
+  publishTopicName: 7338/D13_led
+  subscribedTopic: 
 --- !u!1 &1971232768
 GameObject:
   m_ObjectHideFlags: 0
@@ -5406,16 +5406,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1959259881}
-        m_TargetAssemblyTypeName: ExtralityLab.CustomMqttClientExample, Assembly-CSharp
+      - m_Target: {fileID: 500566448}
+        m_TargetAssemblyTypeName: ExtralityLab.MqttClientExampleSendRGB, Assembly-CSharp
         m_MethodName: PublishTopicValue
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: true
+          m_StringArgument: led_on
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2099458623
