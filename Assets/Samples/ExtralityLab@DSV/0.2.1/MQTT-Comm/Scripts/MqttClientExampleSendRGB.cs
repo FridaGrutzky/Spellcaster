@@ -9,6 +9,9 @@ namespace ExtralityLab
         [Header("Topic")]
         public string publishTopicName = "myUnityApp/analogRGB";
 
+        private bool ledIsOn = false;
+        private bool musicIsOn = false;
+
         protected override void Start()
         {
             base.Start();
@@ -29,8 +32,6 @@ namespace ExtralityLab
         {
             base.OnConnected();
             Debug.Log("MQTT connected");
-
-
         }
 
         private void OnDestroy()
@@ -38,7 +39,7 @@ namespace ExtralityLab
             Disconnect();
         }
 
-        // Den här kommer SpellManager anropa
+        // Lightning spell → togglar lampan
         public void TriggerLightningSpell()
         {
             if (client == null)
@@ -47,7 +48,8 @@ namespace ExtralityLab
                 return;
             }
 
-            string message = "led_on";
+            ledIsOn = !ledIsOn;
+            string message = ledIsOn ? "led_on" : "led_off";
 
             client.Publish(
                 publishTopicName,
@@ -56,7 +58,29 @@ namespace ExtralityLab
                 false
             );
 
-            Debug.Log($"MQTT sent -> Topic: {publishTopicName}  Message: led_off");
+            Debug.Log($"MQTT sent -> Topic: {publishTopicName} Message: {message}");
+        }
+
+        // Circle spell → togglar musik
+        public void TriggerCircleSpell()
+        {
+            if (client == null)
+            {
+                Debug.LogWarning("MQTT client not ready yet");
+                return;
+            }
+
+            musicIsOn = !musicIsOn;
+            string message = musicIsOn ? "music_on" : "music_off";
+
+            client.Publish(
+                publishTopicName,
+                System.Text.Encoding.UTF8.GetBytes(message),
+                MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE,
+                false
+            );
+
+            Debug.Log($"MQTT sent -> Topic: {publishTopicName} Message: {message}");
         }
     }
 }

@@ -35,16 +35,20 @@ public class SpellManager : MonoBehaviour
         {
             bestSpell.Cast();
 
-            if (bestSpell is LightningSpell)
+            if (mqttSender != null)
             {
-                if (mqttSender != null)
+                if (bestSpell is LightningSpell)
                 {
                     mqttSender.TriggerLightningSpell();
                 }
-                else
+                else if (bestSpell is CircleSpell)
                 {
-                    Debug.LogWarning("MQTT sender saknas i SpellManager.");
+                    mqttSender.TriggerCircleSpell();
                 }
+            }
+            else
+            {
+                Debug.LogWarning("MQTT sender saknas i SpellManager.");
             }
 
             foreach (var spell in spells)
