@@ -1,0 +1,245 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1438765762530870368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2635965511721107442}
+  - component: {fileID: 1272201865496613899}
+  - component: {fileID: 3580475318632800318}
+  - component: {fileID: 2956610116747085723}
+  m_Layer: 0
+  m_Name: CirclePattern
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2635965511721107442
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438765762530870368}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!120 &1272201865496613899
+LineRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438765762530870368}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: d8019d46d8f368d4498791ee0559f6a1, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: -0.20000005, y: -0.0000000011920929, z: 0.59000003}
+  - {x: -0.199037, y: -0.019603433, z: 0.59000003}
+  - {x: -0.1961571, y: -0.039018072, z: 0.59000003}
+  - {x: -0.19138812, y: -0.05805694, z: 0.59000003}
+  - {x: -0.18477595, y: -0.07653671, z: 0.59000003}
+  - {x: -0.1763843, y: -0.094279364, z: 0.59000003}
+  - {x: -0.16629396, y: -0.11111406, z: 0.59000003}
+  - {x: -0.15460213, y: -0.12687868, z: 0.59000003}
+  - {x: -0.1414214, y: -0.14142136, z: 0.59000003}
+  - {x: -0.1268787, y: -0.15460211, z: 0.59000003}
+  - {x: -0.11111406, y: -0.16629396, z: 0.59000003}
+  - {x: -0.09427936, y: -0.17638429, z: 0.59000003}
+  - {x: -0.07653671, y: -0.18477593, z: 0.59000003}
+  - {x: -0.05805694, y: -0.1913881, z: 0.59000003}
+  - {x: -0.039018057, y: -0.19615708, z: 0.59000003}
+  - {x: -0.019603431, y: -0.19903697, z: 0.59000003}
+  - {x: 0.00000000874228, y: -0.20000003, z: 0.59000003}
+  - {x: 0.01960345, y: -0.19903697, z: 0.59000003}
+  - {x: 0.039018076, y: -0.19615708, z: 0.59000003}
+  - {x: 0.058056958, y: -0.19138809, z: 0.59000003}
+  - {x: 0.07653672, y: -0.18477593, z: 0.59000003}
+  - {x: 0.09427939, y: -0.17638427, z: 0.59000003}
+  - {x: 0.1111141, y: -0.16629393, z: 0.59000003}
+  - {x: 0.1268787, y: -0.15460213, z: 0.59000003}
+  - {x: 0.1414214, y: -0.14142136, z: 0.59000003}
+  - {x: 0.15460214, y: -0.12687866, z: 0.59000003}
+  - {x: 0.16629396, y: -0.11111405, z: 0.59000003}
+  - {x: 0.17638431, y: -0.09427934, z: 0.59000003}
+  - {x: 0.18477598, y: -0.07653667, z: 0.59000003}
+  - {x: 0.19138812, y: -0.05805695, z: 0.59000003}
+  - {x: 0.19615711, y: -0.03901807, z: 0.59000003}
+  - {x: 0.199037, y: -0.019603424, z: 0.59000003}
+  - {x: 0.20000005, y: 0.000000016292464, z: 0.59000003}
+  - {x: 0.199037, y: 0.019603455, z: 0.59000003}
+  - {x: 0.1961571, y: 0.039018106, z: 0.59000003}
+  - {x: 0.19138812, y: 0.05805698, z: 0.59000003}
+  - {x: 0.18477595, y: 0.0765367, z: 0.59000003}
+  - {x: 0.1763843, y: 0.09427937, z: 0.59000003}
+  - {x: 0.16629395, y: 0.11111408, z: 0.59000003}
+  - {x: 0.15460211, y: 0.1268787, z: 0.59000003}
+  - {x: 0.14142136, y: 0.1414214, z: 0.59000003}
+  - {x: 0.12687871, y: 0.15460211, z: 0.59000003}
+  - {x: 0.111114025, y: 0.16629398, z: 0.59000003}
+  - {x: 0.094279364, y: 0.17638429, z: 0.59000003}
+  - {x: 0.07653665, y: 0.18477596, z: 0.59000003}
+  - {x: 0.05805692, y: 0.1913881, z: 0.59000003}
+  - {x: 0.039018087, y: 0.19615708, z: 0.59000003}
+  - {x: 0.019603392, y: 0.19903697, z: 0.59000003}
+  - {x: -0.0000000023849767, y: 0.20000003, z: 0.59000003}
+  - {x: -0.01960349, y: 0.19903697, z: 0.59000003}
+  - {x: -0.03901809, y: 0.19615708, z: 0.59000003}
+  - {x: -0.058057018, y: 0.19138807, z: 0.59000003}
+  - {x: -0.07653674, y: 0.18477592, z: 0.59000003}
+  - {x: -0.09427937, y: 0.17638429, z: 0.59000003}
+  - {x: -0.11111411, y: 0.16629392, z: 0.59000003}
+  - {x: -0.12687871, y: 0.15460211, z: 0.59000003}
+  - {x: -0.14142144, y: 0.14142132, z: 0.59000003}
+  - {x: -0.15460216, y: 0.12687865, z: 0.59000003}
+  - {x: -0.16629396, y: 0.11111408, z: 0.59000003}
+  - {x: -0.17638431, y: 0.09427932, z: 0.59000003}
+  - {x: -0.18477596, y: 0.0765367, z: 0.59000003}
+  - {x: -0.19138813, y: 0.058056887, z: 0.59000003}
+  - {x: -0.19615711, y: 0.039018054, z: 0.59000003}
+  - {x: -0.199037, y: 0.019603355, z: 0.59000003}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 0.01
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    textureScale: {x: 1, y: 1}
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MaskInteraction: 0
+  m_UseWorldSpace: 1
+  m_Loop: 1
+  m_ApplyActiveColorSpace: 1
+--- !u!114 &3580475318632800318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438765762530870368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302580cc46489a748bf8ffdb7068a818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawingPlane: {fileID: 0}
+  viewer: {fileID: 0}
+  radius: 0.2
+  segments: 64
+  offset: 0.01
+--- !u!114 &2956610116747085723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438765762530870368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e87f7c782b197b4f8b268b2d39ed7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tracker: {fileID: 0}
+  head: {fileID: 0}
+  successSpherePrefab: {fileID: 360416787390830049, guid: 9bdb836c8852c5b4d8a61e87c04d768a, type: 3}
+  tipSphere: {fileID: 0}
+  radius: 0.5
+  radialTolerance: 0.15
+  maxPlaneDepth: 0.75
+  sectors: 16
+  requiredSectors: 9
+  maxTime: 10
+  cooldown: 0
