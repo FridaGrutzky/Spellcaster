@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4572834962032107126}
   - component: {fileID: 4491169563126817698}
   - component: {fileID: 3788788082670455013}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Bubble 3 image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 1507768126099712758}
   - component: {fileID: 3552177990646541558}
   - component: {fileID: 2213332662713588910}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Bubble 2 image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 5459192163215454947}
   - component: {fileID: 4922123751484218067}
   - component: {fileID: 8013793555786013544}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Perform a spell from the book
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 1220354186478125035}
   - component: {fileID: 7492421446586998506}
   - component: {fileID: 277147759464499420}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Shake the wand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 3795865051397439059}
   - component: {fileID: 4216278951570299698}
   - component: {fileID: 5098404060644817494}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Bubble 1 image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 1406235735107475634}
   - component: {fileID: 2512475378550993515}
   - component: {fileID: 5978553271391344536}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: SpellBook UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
+  m_DynamicPixelsPerUnit: 10
   m_PresetInfoIsWorld: 1
 --- !u!114 &2512475378550993515
 MonoBehaviour:
@@ -620,7 +620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mipmapMode: 0
-  _dynamicResolution: 1
+  _dynamicResolution: 0
   _redrawResolutionThreshold: 2147483647
   rectTransform: {fileID: 8883694625714314775}
   maxTextureSize: 2048
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 2602532624674189476}
   - component: {fileID: 2791928255832427693}
   - component: {fileID: 244312558211345634}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Kill an enemy with a spell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -782,7 +782,7 @@ GameObject:
   - component: {fileID: 3267569972465960119}
   - component: {fileID: 3870974544385779818}
   - component: {fileID: 6083569569217002700}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Background UI Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 8761622454541857425}
   - component: {fileID: 5304392438436506779}
   - component: {fileID: 7448241237878036657}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Welcome to Spellcaster!
   m_TagString: Untagged
   m_Icon: {fileID: 0}
