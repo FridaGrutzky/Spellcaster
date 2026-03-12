@@ -1,5 +1,4 @@
-﻿/*using System.Collections.Generic;
-using uPLibrary.Networking.M2Mqtt.Messages;
+﻿using uPLibrary.Networking.M2Mqtt.Messages;
 using M2MqttUnity;
 using UnityEngine;
 
@@ -7,43 +6,31 @@ namespace ExtralityLab
 {
     public class MqttClientExampleSendRGB : M2MqttUnityClient
     {
-        [Header("Topics Config")]
+        [Header("Topic")]
         public string publishTopicName = "myUnityApp/analogRGB";
-
-        public int valueRed = 0;
-        public int valueGreen = 0;
-        public int valueBlue = 0;
-
-        // Edited on demand based on value Red, Green, Blue.
-        public string message = "";
 
         protected override void Start()
         {
             base.Start();
-
-            // Add here your custom Start() below:
-
         }
 
         protected override void Update()
         {
             base.Update();
-
-            // Add here your custom Update() below:
-
         }
 
         protected override void OnConnecting()
         {
             base.OnConnecting();
-            Debug.Log($"MQTT: {publishTopicName} connecting to broker on " + brokerAddress + ":" + brokerPort.ToString() + "...\n");
+            Debug.Log($"MQTT connecting to {brokerAddress}:{brokerPort}");
         }
 
         protected override void OnConnected()
         {
             base.OnConnected();
-            Debug.Log($"MQTT: {publishTopicName} connected!");
-            PublishTopicValue();
+            Debug.Log("MQTT connected");
+
+
         }
 
         private void OnDestroy()
@@ -51,35 +38,25 @@ namespace ExtralityLab
             Disconnect();
         }
 
-        ////// CALLBACKS from Buttons
-
-        public void SetValueRed(float value)
+        // Den här kommer SpellManager anropa
+        public void TriggerLightningSpell()
         {
-            valueRed = (int)value;
-            PublishTopicValue();
-        }
+            if (client == null)
+            {
+                Debug.LogWarning("MQTT client not ready yet");
+                return;
+            }
 
-        public void SetValueGreen(float value)
-        {
-            valueGreen = (int)value;
-            PublishTopicValue();
-        }
+            string message = "led_on";
 
-        public void SetValueBlue(float value)
-        {
-            valueBlue = (int)value;
-            PublishTopicValue();
-        }
+            client.Publish(
+                publishTopicName,
+                System.Text.Encoding.UTF8.GetBytes(message),
+                MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE,
+                false
+            );
 
-        public void PublishTopicValue()
-        {
-            message = $"{valueRed}, {valueGreen}, {valueBlue}";
-
-            client.Publish(publishTopicName,
-                            System.Text.Encoding.UTF8.GetBytes(message),
-                            MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE,
-                            false);
+            Debug.Log($"MQTT sent -> Topic: {publishTopicName}  Message: led_off");
         }
-        
     }
-}*/
+}
