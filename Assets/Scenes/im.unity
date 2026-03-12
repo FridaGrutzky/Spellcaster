@@ -2616,6 +2616,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 491220465}
     m_Modifications:
+    - target: {fileID: 1632635814733941779, guid: a2b4c919fbd37e94a90b1bbace826d3a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1763048040341511524, guid: a2b4c919fbd37e94a90b1bbace826d3a, type: 3}
       propertyPath: viewer
       value: 
@@ -2697,6 +2701,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrianglePattern
       objectReference: {fileID: 0}
+    - target: {fileID: 2513236677832795050, guid: e6409deb8eb17814d9d451fbdd8efc26, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2719588256611826836, guid: e6409deb8eb17814d9d451fbdd8efc26, type: 3}
       propertyPath: head
       value: 
@@ -2709,6 +2717,10 @@ PrefabInstance:
       propertyPath: tipSphere
       value: 
       objectReference: {fileID: 1445491698}
+    - target: {fileID: 2770703446643808973, guid: e6409deb8eb17814d9d451fbdd8efc26, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8127464906733406309, guid: e6409deb8eb17814d9d451fbdd8efc26, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2835,6 +2847,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 491220465}
     m_Modifications:
+    - target: {fileID: 1272201865496613899, guid: 969ab30336a2d474f8327e22b829de4f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1438765762530870368, guid: 969ab30336a2d474f8327e22b829de4f, type: 3}
       propertyPath: m_Name
       value: CirclePattern
