@@ -4,7 +4,7 @@ using ExtralityLab;
 public class SpellManager : MonoBehaviour
 {
     [SerializeField] private BaseSpellGesture[] spells;
-    [SerializeField] private MqttClientExampleSendRGB mqttSender;
+    [SerializeField] private MqttSpellSender mqttSender;
 
     void Update()
     {
