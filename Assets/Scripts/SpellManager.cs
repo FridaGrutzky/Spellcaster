@@ -5,6 +5,8 @@ public class SpellManager : MonoBehaviour
 {
     [SerializeField] private BaseSpellGesture[] spells;
     [SerializeField] private MqttClientExampleSendRGB mqttSender;
+    [SerializeField] private float globalSpellCooldown = 1f;
+    private float nextCastTime = 0f;
 
     void Update()
     {
@@ -31,9 +33,10 @@ public class SpellManager : MonoBehaviour
             }
         }
 
-        if (bestSpell != null)
+        if (bestSpell != null && Time.time >= nextCastTime)
         {
             bestSpell.Cast();
+            nextCastTime = Time.time + globalSpellCooldown;
 
             if (mqttSender != null)
             {
@@ -45,10 +48,6 @@ public class SpellManager : MonoBehaviour
                 {
                     mqttSender.TriggerCircleSpell();
                 }
-            }
-            else
-            {
-                Debug.LogWarning("MQTT sender saknas i SpellManager.");
             }
 
             foreach (var spell in spells)

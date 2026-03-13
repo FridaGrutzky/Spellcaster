@@ -14,13 +14,16 @@ public class LightningSpell : BaseSpellGesture
     private float score;
 
     private Vector2[] points =
-    {
-        new Vector2(-0.10f,  0.50f),
-        new Vector2( 0.12f,  0.12f),
-        new Vector2(-0.25f,  0.12f),
-        new Vector2( 0.10f, -0.50f),
-        new Vector2( 0.00f, -0.05f),
-    };
+{
+    new Vector2(-0.10f,  0.50f),
+    new Vector2( 0.05f,  0.25f),
+    new Vector2( 0.12f,  0.12f),
+    new Vector2(-0.10f,  0.12f),
+    new Vector2(-0.25f,  0.12f),
+    new Vector2(-0.05f, -0.15f),
+    new Vector2( 0.10f, -0.50f),
+    new Vector2( 0.00f, -0.05f),
+};
 
     public override float Score => score;
     public override bool IsComplete => complete;
