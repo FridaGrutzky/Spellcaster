@@ -4,6 +4,7 @@ using UnityEngine.Rendering.Universal;
 
 public class BrightnessController : MonoBehaviour
 {
+    public float startLight = -5;
     public Volume volume;
     private ColorAdjustments colorAdjustments;
 
@@ -11,6 +12,9 @@ public class BrightnessController : MonoBehaviour
     {
         // Hämtar Color Adjustments från Volume
         volume.profile.TryGet(out colorAdjustments);
+
+        // Startljus
+        colorAdjustments.postExposure.value = startLight;
     }
 
     public void SetBrightness(float value)
