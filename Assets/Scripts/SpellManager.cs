@@ -41,7 +41,7 @@ public class SpellManager : MonoBehaviour
                 {
                     mqttSender.TriggerLightningSpell();
                 }
-                else if (bestSpell is CircleSpell)
+                else if (bestSpell is CircleMusicSpell)
                 {
                     mqttSender.TriggerCircleSpell();
                 }
