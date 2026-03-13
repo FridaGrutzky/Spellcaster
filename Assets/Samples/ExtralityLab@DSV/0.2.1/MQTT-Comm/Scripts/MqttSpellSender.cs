@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ExtralityLab
 {
-    public class MqttClientExampleSendRGB : M2MqttUnityClient
+    public class MqttSpellSender : M2MqttUnityClient
     {
         [Header("Topic")]
         public string publishTopicName = "myUnityApp/analogRGB";
