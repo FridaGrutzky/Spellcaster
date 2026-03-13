@@ -3,6 +3,7 @@ using ExtralityLab;
 
 public class SpellManager : MonoBehaviour
 {
+    [SerializeField] private BrightnessController brightnessController;
     [SerializeField] private BaseSpellGesture[] spells;
     [SerializeField] private MqttSpellSender mqttSender;
     [SerializeField] private float globalSpellCooldown = 1f;
@@ -43,6 +44,7 @@ public class SpellManager : MonoBehaviour
                 if (bestSpell is LightningSpell)
                 {
                     mqttSender.TriggerLightningSpell();
+                    brightnessController.SetBrightness(0);
                 }
                 else if (bestSpell is CircleSpell)
                 {
