@@ -36,133 +36,133 @@ public class TrackablesManager : MonoBehaviour
 
 
 
-    public void OnTrackableAdded(MRUKTrackable trackable)
+     public void OnTrackableAdded(MRUKTrackable trackable)
 
-    {
+     {
 
 
 
 
 
-        Debug.Log($"Trackable of type {trackable.TrackableType} added");
+         Debug.Log($"Trackable of type {trackable.TrackableType} added");
 
-        var trackedObjectInstance = Instantiate(trackedObjectPrefab, trackable.transform);
+         var trackedObjectInstance = Instantiate(trackedObjectPrefab, trackable.transform);
 
-        var trackedBoundsInstance = Instantiate(trackedBoundsPrefab, trackedObjectInstance.transform);
+         var trackedBoundsInstance = Instantiate(trackedBoundsPrefab, trackedObjectInstance.transform);
 
 
 
 
 
-        // Store the instance so we can find it later in OnTrackableRemoved
+         // Store the instance so we can find it later in OnTrackableRemoved
 
-        if (!_spawnedObjects.ContainsKey(trackable))
+         if (!_spawnedObjects.ContainsKey(trackable))
 
-        {
+         {
 
-            _spawnedObjects.Add(trackable, trackedObjectInstance);
+             _spawnedObjects.Add(trackable, trackedObjectInstance);
 
-        }
+         }
 
 
 
-        if (trackable.TrackableType == OVRAnchor.TrackableType.QRCode &&
+         if (trackable.TrackableType == OVRAnchor.TrackableType.QRCode &&
 
-            trackable.MarkerPayloadString != null)
+             trackable.MarkerPayloadString != null)
 
-        {
+         {
 
-            string payload = trackable.MarkerPayloadString.Trim().ToUpper();
+             string payload = trackable.MarkerPayloadString.Trim().ToUpper();
 
 
 
-            /* --- COMMENTED OUT OLD INDIVIDUAL SPAWNING LOGIC (KEEPING FOR SAFETY) ---
+             /* --- COMMENTED OUT OLD INDIVIDUAL SPAWNING LOGIC (KEEPING FOR SAFETY) ---
 
-            var canvasInstance = Instantiate(trackedObjectInfoPrefab, trackedObjectInstance.transform);
+             var canvasInstance = Instantiate(trackedObjectInfoPrefab, trackedObjectInstance.transform);
 
 
 
-            GameObject spellToSpawn = null;
+             GameObject spellToSpawn = null;
 
-            if (payload == "FIRESPELL") spellToSpawn = fireSpellPrefab;
+             if (payload == "FIRESPELL") spellToSpawn = fireSpellPrefab;
 
-            else if (payload == "LIGHTSPELL") spellToSpawn = lightSpellPrefab;
+             else if (payload == "LIGHTSPELL") spellToSpawn = lightSpellPrefab;
 
-            else if (payload == "WINDSPELL") spellToSpawn = windSpellPrefab;
+             else if (payload == "WINDSPELL") spellToSpawn = windSpellPrefab;
 
 
 
-            if (spellToSpawn != null)
+             if (spellToSpawn != null)
 
-            {
+             {
 
-                Instantiate(spellToSpawn, canvasInstance.transform);
+                 Instantiate(spellToSpawn, canvasInstance.transform);
 
-            }
+             }
 
-            ------------------------------------------------------- */
+             ------------------------------------------------------- */
 
 
 
-            // --- ALL-IN-ONE SEARCH LOGIC ---
+             // --- ALL-IN-ONE SEARCH LOGIC ---
 
-            GameObject fireUI = null;
+             GameObject fireUI = null;
 
-            GameObject lightUI = null;
+             GameObject lightUI = null;
 
-            GameObject windUI = null;
+             GameObject windUI = null;
 
 
 
-            foreach (Transform child in trackedObjectInstance.GetComponentsInChildren<Transform>(true))
+             foreach (Transform child in trackedObjectInstance.GetComponentsInChildren<Transform>(true))
 
-            {
+             {
 
-                if (child.name == "FIRESPELL") fireUI = child.gameObject;
+                 if (child.name == "FIRESPELL") fireUI = child.gameObject;
 
-                if (child.name == "LIGHTSPELL") lightUI = child.gameObject;
+                 if (child.name == "LIGHTSPELL") lightUI = child.gameObject;
 
-                if (child.name == "WINDSPELL") windUI = child.gameObject;
+                 if (child.name == "WINDSPELL") windUI = child.gameObject;
 
-            }
+             }
 
 
 
-            if (fireUI) fireUI.SetActive(false);
+             if (fireUI) fireUI.SetActive(false);
 
-            if (lightUI) lightUI.SetActive(false);
+             if (lightUI) lightUI.SetActive(false);
 
-            if (windUI) windUI.SetActive(false);
+             if (windUI) windUI.SetActive(false);
 
 
 
-            if (payload == "FIRESPELL" && fireUI) fireUI.SetActive(true);
+             if (payload == "FIRESPELL" && fireUI) fireUI.SetActive(true);
 
-            else if (payload == "LIGHTSPELL" && lightUI) lightUI.SetActive(true);
+             else if (payload == "LIGHTSPELL" && lightUI) lightUI.SetActive(true);
 
-            else if (payload == "WINDSPELL" && windUI) windUI.SetActive(true);
+             else if (payload == "WINDSPELL" && windUI) windUI.SetActive(true);
 
 
 
-            // --- Bounds Logic (Centered) ---
+             // --- Bounds Logic (Centered) ---
 
-            var boundsAreaRect = trackable.PlaneRect.Value;
+             var boundsAreaRect = trackable.PlaneRect.Value;
 
-            Vector3 localCenter = new Vector3(boundsAreaRect.center.x, boundsAreaRect.center.y, 0.0f);
+             Vector3 localCenter = new Vector3(boundsAreaRect.center.x, boundsAreaRect.center.y, 0.0f);
 
 
 
-            trackedObjectInstance.transform.localPosition = localCenter;
+             trackedObjectInstance.transform.localPosition = localCenter;
 
-            trackedBoundsInstance.transform.localScale = new Vector3(boundsAreaRect.width, boundsAreaRect.height, 0.01f);
+             trackedBoundsInstance.transform.localScale = new Vector3(boundsAreaRect.width, boundsAreaRect.height, 0.01f);
 
-            trackedBoundsInstance.transform.localPosition = localCenter;
+             trackedBoundsInstance.transform.localPosition = localCenter;
 
-        }
+         }
 
-    }
-
-
+     }
+     
+  
 
     public void OnTrackableRemoved(MRUKTrackable trackable)
 
