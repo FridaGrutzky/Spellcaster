@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CircleSpell : BaseSpellGesture
+public class CircleMusicSpell : BaseSpellGesture
 {
     [Header("Circle template")]
     public float radius = 0.25f;
