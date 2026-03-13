@@ -76,37 +76,37 @@ public class TrackablesManager : MonoBehaviour
 
 
 
-            /* --- COMMENTED OUT OLD INDIVIDUAL SPAWNING LOGIC (KEEPING FOR SAFETY) ---
+             /* --- COMMENTED OUT OLD INDIVIDUAL SPAWNING LOGIC (KEEPING FOR SAFETY) ---
 
-            var canvasInstance = Instantiate(trackedObjectInfoPrefab, trackedObjectInstance.transform);
-
-
-
-            GameObject spellToSpawn = null;
-
-            if (payload == "FIRESPELL") spellToSpawn = fireSpellPrefab;
-
-            else if (payload == "LIGHTSPELL") spellToSpawn = lightSpellPrefab;
-
-            else if (payload == "WINDSPELL") spellToSpawn = windSpellPrefab;
+             var canvasInstance = Instantiate(trackedObjectInfoPrefab, trackedObjectInstance.transform);
 
 
 
-            if (spellToSpawn != null)
+             GameObject spellToSpawn = null;
 
-            {
+             if (payload == "FIRESPELL") spellToSpawn = fireSpellPrefab;
 
-                Instantiate(spellToSpawn, canvasInstance.transform);
+             else if (payload == "LIGHTSPELL") spellToSpawn = lightSpellPrefab;
 
-            }
-
-            ------------------------------------------------------- */
+             else if (payload == "WINDSPELL") spellToSpawn = windSpellPrefab;
 
 
 
-            // --- ALL-IN-ONE SEARCH LOGIC ---
+             if (spellToSpawn != null)
 
-            GameObject fireUI = null;
+             {
+
+                 Instantiate(spellToSpawn, canvasInstance.transform);
+
+             }
+
+             ------------------------------------------------------- */
+
+
+
+             // --- ALL-IN-ONE SEARCH LOGIC ---
+
+             GameObject fireUI = null;
 
              GameObject lightUI = null;
 

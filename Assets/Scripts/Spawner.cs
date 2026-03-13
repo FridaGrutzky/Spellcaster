@@ -5,16 +5,17 @@ public class Spawner : MonoBehaviour
     public GameObject prefab;          // Det som ska spawna
     public Vector3 boxSize = new Vector3(5, 3, 5);
     public float interval = 10f;       // Tid mellan spawns
-
     public Transform center;           // Mittpunkten för området
+
+    Transform player;
     float timer;
 
-    /*
+    
     private void Awake()
     {
-        center = transform;
+        player = Camera.main.transform;
     }
-    */
+    
 
     void Update()
     {
@@ -35,7 +36,12 @@ public class Spawner : MonoBehaviour
 
         Vector3 pos = center.position + new Vector3(x, y, z);
 
-        Instantiate(prefab, pos, Quaternion.identity);
+        GameObject obj = Instantiate(prefab, pos, Quaternion.identity);
+
+        Vector3 lookPos = player.position;
+        lookPos.y = obj.transform.position.y; // lås höjdled
+
+        obj.transform.LookAt(lookPos);
     }
 
     // Bara för att se området i editorn
