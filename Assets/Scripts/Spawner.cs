@@ -7,15 +7,15 @@ public class Spawner : MonoBehaviour
     public float interval = 10f;       // Tid mellan spawns
     public Transform center;           // Mittpunkten för området
 
-    Transform player = Camera.main.transform;
+    Transform player;
     float timer;
 
-    /*
+    
     private void Awake()
     {
-        center = transform;
+        player = Camera.main.transform;
     }
-    */
+    
 
     void Update()
     {
@@ -38,8 +38,10 @@ public class Spawner : MonoBehaviour
 
         GameObject obj = Instantiate(prefab, pos, Quaternion.identity);
 
-        // Vänd mot kameran (spelaren)
-        obj.transform.LookAt(Camera.main.transform);
+        Vector3 lookPos = player.position;
+        lookPos.y = obj.transform.position.y; // lås höjdled
+
+        obj.transform.LookAt(lookPos);
     }
 
     // Bara för att se området i editorn
