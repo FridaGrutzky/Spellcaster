@@ -14,11 +14,15 @@ public class WindSpell : BaseSpellGesture
     private float score;
 
     private Vector2[] points =
-    {
-        new Vector2( 0.00f,  0.50f),
-        new Vector2(-0.45f, -0.35f),
-        new Vector2( 0.45f, -0.35f),
-    };
+{
+    new Vector2( 0.00f,  0.50f),  // topp
+    new Vector2(-0.20f,  0.05f),
+    new Vector2(-0.45f, -0.35f),  // vänster
+    new Vector2( 0.00f, -0.35f),
+    new Vector2( 0.45f, -0.35f),  // höger
+    new Vector2( 0.20f,  0.05f),
+    new Vector2( 0.00f,  0.50f),  // tillbaka till topp
+};
 
     public override float Score => score;
     public override bool IsComplete => complete;
