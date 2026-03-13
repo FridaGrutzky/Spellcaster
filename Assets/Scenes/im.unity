@@ -773,6 +773,7 @@ MonoBehaviour:
   - {fileID: 1704254499}
   - {fileID: 1903338757}
   mqttSender: {fileID: 1040655571}
+  globalSpellCooldown: 1
 --- !u!4 &555320489
 Transform:
   m_ObjectHideFlags: 0
@@ -1320,8 +1321,8 @@ MonoBehaviour:
   connectionDelay: 500
   timeoutOnConnection: 30000
   autoConnect: 1
-  mqttUserName: unity
-  mqttPassword: extrality
+  mqttUserName: 
+  mqttPassword: 
   publishTopicName: 7338/D13_led
 --- !u!4 &1040655572
 Transform:
@@ -3196,7 +3197,7 @@ PrefabInstance:
       objectReference: {fileID: 360416787390830049, guid: 9bdb836c8852c5b4d8a61e87c04d768a, type: 3}
     - target: {fileID: 2956610116747085723, guid: 969ab30336a2d474f8327e22b829de4f, type: 3}
       propertyPath: radialTolerance
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3580475318632800318, guid: 969ab30336a2d474f8327e22b829de4f, type: 3}
       propertyPath: viewer

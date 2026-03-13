@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class LightningSpell : BaseSpellGesture
+public class WindSpell : BaseSpellGesture
 {
-    [Header("Lightning shape")]
-    public float width = 0.18f;
+    [Header("Triangle shape")]
+    public float width = 0.28f;
     public float height = 0.28f;
-    public float tolerance = 0.18f;
-    public float maxTime = 10f;
+    public float tolerance = 0.22f;
+    public float maxTime = 8f;
 
     private int currentPoint = 0;
     private float t0;
@@ -14,13 +14,15 @@ public class LightningSpell : BaseSpellGesture
     private float score;
 
     private Vector2[] points =
-    {
-        new Vector2(-0.10f,  0.50f),
-        new Vector2( 0.12f,  0.12f),
-        new Vector2(-0.25f,  0.12f),
-        new Vector2( 0.10f, -0.50f),
-        new Vector2( 0.00f, -0.05f),
-    };
+{
+    new Vector2( 0.00f,  0.50f),  // topp
+    new Vector2(-0.20f,  0.05f),
+    new Vector2(-0.45f, -0.35f),  // vänster
+    new Vector2( 0.00f, -0.35f),
+    new Vector2( 0.45f, -0.35f),  // höger
+    new Vector2( 0.20f,  0.05f),
+    new Vector2( 0.00f,  0.50f),  // tillbaka till topp
+};
 
     public override float Score => score;
     public override bool IsComplete => complete;
@@ -49,6 +51,8 @@ public class LightningSpell : BaseSpellGesture
         );
 
         float dist = Vector2.Distance(p, target);
+
+        // Ju närmare aktuell target, desto bättre del-score
         float pointQuality = 1f - Mathf.Clamp01(dist / tolerance);
 
         score = currentPoint + pointQuality;
