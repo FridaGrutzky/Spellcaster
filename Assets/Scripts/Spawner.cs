@@ -11,6 +11,7 @@ public class Spawner : MonoBehaviour
     public float outerRadius = 5f;   // Spawn sker här
     public float height = 2f;        // Höjdvariation
 
+    bool activated = false;
     Transform player;
     float timer;
 
@@ -19,11 +20,16 @@ public class Spawner : MonoBehaviour
         player = Camera.main.transform;
     }
 
+    public void ActivateSpawner()
+    {
+        activated = true;
+    }
+
     void Update()
     {
         timer += Time.deltaTime;
 
-        if (timer >= interval)
+        if (timer >= interval && activated)
         {
             SpawnInDonut();
             timer = 0f;
