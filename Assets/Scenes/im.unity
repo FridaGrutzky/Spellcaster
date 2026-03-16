@@ -233,6 +233,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4199855845969219225, guid: 217ec93791f34cc47a034569f3ac36d1, type: 3}
+      propertyPath: center
+      value: 
+      objectReference: {fileID: 1764941874}
     - target: {fileID: 9186656780487253589, guid: 217ec93791f34cc47a034569f3ac36d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.03
@@ -278,6 +282,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 217ec93791f34cc47a034569f3ac36d1, type: 3}
+--- !u!114 &27912138 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4199855845969219225, guid: 217ec93791f34cc47a034569f3ac36d1, type: 3}
+  m_PrefabInstance: {fileID: 27912137}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a561dae709c2b9458785a84d60e005a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &64295602
 GameObject:
   m_ObjectHideFlags: 0
@@ -886,6 +901,7 @@ MonoBehaviour:
   - {fileID: 1903338757}
   mqttSender: {fileID: 1040655571}
   globalSpellCooldown: 1
+  spawner: {fileID: 27912138}
   introUI: {fileID: 1893771331}
 --- !u!4 &555320489
 Transform:

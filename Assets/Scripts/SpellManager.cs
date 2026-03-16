@@ -7,6 +7,7 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private BaseSpellGesture[] spells;
     [SerializeField] private MqttSpellSender mqttSender;
     [SerializeField] private float globalSpellCooldown = 1f;
+    [SerializeField] private Spawner spawner;
     private float nextCastTime = 0f;
     public GameObject introUI;
 
@@ -46,6 +47,11 @@ public class SpellManager : MonoBehaviour
                 {
                     mqttSender.TriggerLightningSpell();
                     passthroughLightController.CastLightSpell();
+
+                    if (spawner.isActiveAndEnabled)
+                    {
+                        spawner.ActivateSpawner();
+                    }
                 }
                 else if (bestSpell is CircleSpell)
                 {
