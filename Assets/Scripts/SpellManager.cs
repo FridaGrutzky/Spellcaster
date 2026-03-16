@@ -8,6 +8,7 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private float globalSpellCooldown = 1f;
     private float nextCastTime = 0f;
     public PassthroughLightController passthroughLightController;
+    public GameObject introUI;
 
     void Update()
     {
@@ -49,6 +50,10 @@ public class SpellManager : MonoBehaviour
                 else if (bestSpell is CircleSpell)
                 {
                     mqttSender.TriggerCircleSpell();
+                }
+                else if(bestSpell is WindSpell)
+                {
+                    Object.Destroy(introUI);
                 }
             }
 

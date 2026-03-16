@@ -886,6 +886,7 @@ MonoBehaviour:
   mqttSender: {fileID: 1040655571}
   globalSpellCooldown: 1
   passthroughLightController: {fileID: 1407425235}
+  introUI: {fileID: 1893771331}
 --- !u!4 &555320489
 Transform:
   m_ObjectHideFlags: 0
@@ -2483,13 +2484,77 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1764941874}
     m_Modifications:
+    - target: {fileID: 1220354186478125035, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220354186478125035, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220354186478125035, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220354186478125035, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 164
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220354186478125035, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602532624674189476, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3267569972465960119, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 3267569972465960119, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 3267569972465960119, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3795865051397439059, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5198845985159317737, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
       propertyPath: m_Name
       value: Tutorial UI
       objectReference: {fileID: 0}
     - target: {fileID: 5198845985159317737, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459192163215454947, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459192163215454947, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459192163215454947, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459192163215454947, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459192163215454947, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013793555786013544, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+      propertyPath: m_text
+      value: Perform a spell
       objectReference: {fileID: 0}
     - target: {fileID: 8883694625714314775, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
       propertyPath: m_Pivot.x
@@ -2553,11 +2618,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8883694625714314775, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.26
+      value: 0.211
       objectReference: {fileID: 0}
     - target: {fileID: 8883694625714314775, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8883694625714314775, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2572,10 +2637,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 10912940227029975, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+--- !u!1 &1893771331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5198845985159317737, guid: 03daf93ca7648234cabc5049ed66bb84, type: 3}
+  m_PrefabInstance: {fileID: 1893771330}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1903338757 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2719588256611826836, guid: e6409deb8eb17814d9d451fbdd8efc26, type: 3}
@@ -3057,6 +3128,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1445491698}
     - target: {fileID: 8897213496852063322, guid: a2b4c919fbd37e94a90b1bbace826d3a, type: 3}
+      propertyPath: tolerance
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897213496852063322, guid: a2b4c919fbd37e94a90b1bbace826d3a, type: 3}
       propertyPath: spellPrefab
       value: 
       objectReference: {fileID: 360416787390830049, guid: aef35279914f8804ca9a0f802d816a4c, type: 3}
@@ -3093,6 +3168,10 @@ PrefabInstance:
       propertyPath: tipSphere
       value: 
       objectReference: {fileID: 1445491698}
+    - target: {fileID: 2719588256611826836, guid: e6409deb8eb17814d9d451fbdd8efc26, type: 3}
+      propertyPath: tolerance
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 2719588256611826836, guid: e6409deb8eb17814d9d451fbdd8efc26, type: 3}
       propertyPath: spellPrefab
       value: 
