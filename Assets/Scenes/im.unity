@@ -767,7 +767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab35ca0ede8f12841bbbc90861fd5bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passthroughLightController: {fileID: 0}
+  passthroughLightController: {fileID: 1418849258}
   spells:
   - {fileID: 851730227}
   - {fileID: 1704254499}
@@ -1464,52 +1464,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 159718, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
   m_PrefabInstance: {fileID: 1764941862}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1418849257
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1418849259}
-  - component: {fileID: 1418849258}
-  m_Layer: 0
-  m_Name: 'PassthroughLightController '
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1418849258
+--- !u!114 &1418849258 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 834421266662260110, guid: f65568cf9beec1d4088742e6f729e070, type: 3}
+  m_PrefabInstance: {fileID: 2273157352115191365}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1418849257}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56529d99aa798fb41af0387610cc463c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  darkOverlay: {fileID: 974483217}
-  fadeDuration: 2
---- !u!4 &1418849259
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1418849257}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1445491694
 GameObject:
   m_ObjectHideFlags: 0
@@ -3049,6 +3014,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1445491698}
     - target: {fileID: 8897213496852063322, guid: a2b4c919fbd37e94a90b1bbace826d3a, type: 3}
+      propertyPath: maxTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897213496852063322, guid: a2b4c919fbd37e94a90b1bbace826d3a, type: 3}
       propertyPath: tracker
       value: 
       objectReference: {fileID: 491220469}
@@ -3056,6 +3025,10 @@ PrefabInstance:
       propertyPath: tipSphere
       value: 
       objectReference: {fileID: 1445491698}
+    - target: {fileID: 8897213496852063322, guid: a2b4c919fbd37e94a90b1bbace826d3a, type: 3}
+      propertyPath: tolerance
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8897213496852063322, guid: a2b4c919fbd37e94a90b1bbace826d3a, type: 3}
       propertyPath: spellPrefab
       value: 
@@ -3065,6 +3038,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2b4c919fbd37e94a90b1bbace826d3a, type: 3}
+--- !u!1001 &2273157352115191365
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 433268843031382309, guid: f65568cf9beec1d4088742e6f729e070, type: 3}
+      propertyPath: m_Name
+      value: 'PassthroughLightController '
+      objectReference: {fileID: 0}
+    - target: {fileID: 834421266662260110, guid: f65568cf9beec1d4088742e6f729e070, type: 3}
+      propertyPath: darkOverlay
+      value: 
+      objectReference: {fileID: 974483217}
+    - target: {fileID: 6444296990061147654, guid: f65568cf9beec1d4088742e6f729e070, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444296990061147654, guid: f65568cf9beec1d4088742e6f729e070, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444296990061147654, guid: f65568cf9beec1d4088742e6f729e070, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444296990061147654, guid: f65568cf9beec1d4088742e6f729e070, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444296990061147654, guid: f65568cf9beec1d4088742e6f729e070, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444296990061147654, guid: f65568cf9beec1d4088742e6f729e070, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444296990061147654, guid: f65568cf9beec1d4088742e6f729e070, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444296990061147654, guid: f65568cf9beec1d4088742e6f729e070, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444296990061147654, guid: f65568cf9beec1d4088742e6f729e070, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444296990061147654, guid: f65568cf9beec1d4088742e6f729e070, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f65568cf9beec1d4088742e6f729e070, type: 3}
 --- !u!1001 &2954478502781424773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3333,5 +3367,5 @@ SceneRoots:
   - {fileID: 27912137}
   - {fileID: 555320489}
   - {fileID: 616237581}
-  - {fileID: 1418849259}
+  - {fileID: 2273157352115191365}
   - {fileID: 974483216}
