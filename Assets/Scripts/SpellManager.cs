@@ -7,6 +7,7 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private MqttSpellSender mqttSender;
     [SerializeField] private float globalSpellCooldown = 1f;
     private float nextCastTime = 0f;
+    public PassthroughLightController passthroughLightController;
 
     void Update()
     {
@@ -43,6 +44,7 @@ public class SpellManager : MonoBehaviour
                 if (bestSpell is LightningSpell)
                 {
                     mqttSender.TriggerLightningSpell();
+                    passthroughLightController.CastLightSpell();
                 }
                 else if (bestSpell is CircleSpell)
                 {
