@@ -8,7 +8,6 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private MqttSpellSender mqttSender;
     [SerializeField] private float globalSpellCooldown = 1f;
     private float nextCastTime = 0f;
-    public PassthroughLightController passthroughLightController;
     public GameObject introUI;
 
     void Update()
