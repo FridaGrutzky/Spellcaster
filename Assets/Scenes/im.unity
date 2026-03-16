@@ -396,7 +396,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1742945030460387862, guid: da81e166b58c67643ae7969c4b0961b2, type: 3}
       propertyPath: m_RenderMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3899098447634954143, guid: da81e166b58c67643ae7969c4b0961b2, type: 3}
       propertyPath: m_Pivot.x
