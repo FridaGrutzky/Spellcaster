@@ -9,6 +9,9 @@ public class SpellManager : MonoBehaviour
     private float nextCastTime = 0f;
     public PassthroughLightController passthroughLightController;
     public GameObject introUI;
+    public GameObject musicUI;
+    public GameObject lightUI;
+    public GameObject lightningUI;
 
     void Update()
     {
@@ -46,14 +49,17 @@ public class SpellManager : MonoBehaviour
                 {
                     mqttSender.TriggerLightningSpell();
                     passthroughLightController.CastLightSpell();
+                    lightUI.SetActive(true);
                 }
                 else if (bestSpell is CircleSpell)
                 {
                     mqttSender.TriggerCircleSpell();
+                    musicUI.SetActive(true);
                 }
                 else if(bestSpell is WindSpell)
                 {
                     Object.Destroy(introUI);
+                    lightningUI.SetActive(true);
                 }
             }
 
